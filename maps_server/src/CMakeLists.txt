@@ -69,7 +69,7 @@ set(REQUIRED_PACKAGES
   bot2-frames
   lcm
   zlib
-  drc-utils
+  maps-utils
 )
 pods_use_pkg_config_packages(maps ${REQUIRED_PACKAGES})
 

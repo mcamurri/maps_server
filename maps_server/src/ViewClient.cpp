@@ -7,7 +7,7 @@
 #include <lcmtypes/drc/map_image_t.hpp>
 #include <lcmtypes/drc/map_catalog_t.hpp>
 #include <thread>
-#include <drc_utils/Clock.hpp>
+#include <maps_utils/Clock.hpp>
 
 #include "PointCloudView.hpp"
 #include "OctreeView.hpp"

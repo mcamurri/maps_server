@@ -25,8 +25,8 @@
 
 // TODO TEMP
 #include <bot_core/timestamp.h>
-#include <drc_utils/Clock.hpp>
-#include <drc_utils/LidarUtils.hpp>
+#include <maps_utils/Clock.hpp>
+#include <maps_utils/LidarUtils.hpp>
 
 using namespace maps;
 using namespace std;

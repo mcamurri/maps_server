@@ -1,7 +1,7 @@
 #include <iostream>
 #include <unordered_map>
 
-#include <drc_utils/LcmWrapper.hpp>
+#include <maps_utils/LcmWrapper.hpp>
 #include <ConciseArgs>
 #include <lcm/lcm-cpp.hpp>
 
