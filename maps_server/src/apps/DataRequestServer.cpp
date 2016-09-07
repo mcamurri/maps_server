@@ -9,7 +9,7 @@
 #include <lcm/lcm-cpp.hpp>
 #include <lcmtypes/maps/data_request_list_t.hpp>
 #include <lcmtypes/maps/request_t.hpp>
-#include <lcmtypes/drc/shaper_data_request_t.hpp>
+#include <lcmtypes/maps/shaper_data_request_t.hpp>
 
 #include <ConciseArgs>
 #include <maps_utils/Clock.hpp>
@@ -412,7 +412,7 @@ struct Worker {
   }
 
   void sendTerrainCostRequest() {
-    drc::shaper_data_request_t msg;
+    maps::shaper_data_request_t msg;
     msg.channel = "TERRAIN_DIST_MAP";
     msg.priority = 1;
     mLcm->publish("SHAPER_DATA_REQUEST", &msg);
