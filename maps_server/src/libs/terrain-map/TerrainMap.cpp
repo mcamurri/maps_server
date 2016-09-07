@@ -4,7 +4,7 @@
 
 #include <lcm/lcm-cpp.hpp>
 #include <lcmtypes/bot_core/pose_t.hpp>
-#include <lcmtypes/drc/map_image_t.hpp>
+#include <lcmtypes/maps/image_t.hpp>
 
 #include <maps_utils/BotWrapper.hpp>
 
@@ -136,7 +136,7 @@ struct TerrainMap::Helper {
       }
     }
     if (mShouldPublishMap) {
-      drc::map_image_t msg;
+      maps::image_t msg;
       maps::LcmTranslator::toLcm(*view, msg);
       msg.view_id = mMapPublishViewId;
       mBotWrapper->getLcm()->publish(mMapPublishChannel, &msg);

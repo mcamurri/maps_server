@@ -7,7 +7,7 @@
 
 #include <lcm/lcm-cpp.hpp>
 #include <lcmtypes/bot_core/images_t.hpp>
-#include <lcmtypes/drc/map_request_t.hpp>
+#include <lcmtypes/maps/request_t.hpp>
 
 #include <bot_core/camtrans.h>
 #include <bot_param/param_util.h>
@@ -314,7 +314,7 @@ struct StereoHandler::Imp {
     return view;
   }
 
-  DepthImageView::Ptr getDepthImageView(const drc::map_request_t& iRequest) {
+  DepthImageView::Ptr getDepthImageView(const maps::request_t& iRequest) {
     // get latest depth map as view
     DepthImageView::Ptr depthView = getLatestDepthImage(true);
     if (depthView == NULL) return depthView;
@@ -373,6 +373,6 @@ getDepthImageView(const std::vector<Eigen::Vector4f>& iBoundPlanes) {
 }
 
 DepthImageView::Ptr StereoHandler::
-getDepthImageView(const drc::map_request_t& iRequest) {
+getDepthImageView(const maps::request_t& iRequest) {
   return mImp->getDepthImageView(iRequest);
 }

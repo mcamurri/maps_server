@@ -5,10 +5,10 @@
 #include <ConciseArgs>
 #include <lcm/lcm-cpp.hpp>
 
-#include <lcmtypes/drc/map_snapshot_request_t.hpp>
-#include <lcmtypes/drc/map_cloud_t.hpp>
-#include <lcmtypes/drc/map_octree_t.hpp>
-#include <lcmtypes/drc/map_image_t.hpp>
+#include <lcmtypes/maps/snapshot_request_t.hpp>
+#include <lcmtypes/maps/cloud_t.hpp>
+#include <lcmtypes/maps/octree_t.hpp>
+#include <lcmtypes/maps/image_t.hpp>
 
 #include <maps/BotWrapper.hpp>
 #include <maps/ViewBase.hpp>
@@ -48,7 +48,7 @@ struct State {
     mLcmWrapper->startHandleThread(true);
   }
 
-  void storeView(const drc::map_snapshot_request_t* iMessage) {
+  void storeView(const maps::snapshot_request_t* iMessage) {
     auto view = mViewClient->getView(iMessage->view_id);
     if (view != NULL) {
       ViewData viewData;
@@ -74,7 +74,7 @@ struct State {
     }
   }
 
-  void deleteView(const drc::map_snapshot_request_t* iMessage) {
+  void deleteView(const maps::snapshot_request_t* iMessage) {
     auto item = mViewDataSet.find(iMessage->view_id);
     if (item != mViewDataSet.end()) {
       mViewDataSet.erase(iMessage->view_id);
@@ -86,25 +86,25 @@ struct State {
     }
   }
 
-  void publishView(const drc::map_snapshot_request_t* iMessage) {
+  void publishView(const maps::snapshot_request_t* iMessage) {
     auto item = mViewDataSet.find(iMessage->view_id);
     if (item != mViewDataSet.end()) {
       auto view = item->second.mView;
       maps::ViewBase::Type type = view->getType();
       if (type == maps::ViewBase::TypePointCloud) {
-        drc::map_cloud_t msg;
+        maps::cloud_t msg;
         maps::LcmTranslator::toLcm
           (*std::dynamic_pointer_cast<maps::PointCloudView>(view), msg);
         mLcm->publish(item->second.mPublishChannel, &msg);
       }
       else if (type == maps::ViewBase::TypeOctree) {
-        drc::map_octree_t msg;
+        maps::octree_t msg;
         maps::LcmTranslator::toLcm
           (*std::dynamic_pointer_cast<maps::OctreeView>(view), msg);
         mLcm->publish(item->second.mPublishChannel, &msg);
       }
       else if (type == maps::ViewBase::TypeDepthImage) { 
-        drc::map_image_t msg;
+        maps::image_t msg;
         maps::LcmTranslator::toLcm
           (*std::dynamic_pointer_cast<maps::DepthImageView>(view), msg);
         mLcm->publish(item->second.mPublishChannel, &msg);
@@ -120,7 +120,7 @@ struct State {
     }      
   }
 
-  void updateTransform(const drc::map_snapshot_request_t* iMessage) {
+  void updateTransform(const maps::snapshot_request_t* iMessage) {
     auto item = mViewDataSet.find(iMessage->view_id);
     if (item != mViewDataSet.end()) {
       Eigen::Projective3f xform;
@@ -139,12 +139,12 @@ struct State {
 
   void onSnapshotRequest(const lcm::ReceiveBuffer* iBuffer,
                          const std::string& iChannel,
-                         const drc::map_snapshot_request_t* iMessage) {
+                         const maps::snapshot_request_t* iMessage) {
     switch (iMessage->command) {
-    case drc::map_snapshot_request_t::STORE: storeView(iMessage); break;
-    case drc::map_snapshot_request_t::DELETE: deleteView(iMessage); break;
-    case drc::map_snapshot_request_t::PUBLISH: publishView(iMessage); break;
-    case drc::map_snapshot_request_t::UPDATE_TRANSFORM: updateTransform(iMessage); break;
+    case maps::snapshot_request_t::STORE: storeView(iMessage); break;
+    case maps::snapshot_request_t::DELETE: deleteView(iMessage); break;
+    case maps::snapshot_request_t::PUBLISH: publishView(iMessage); break;
+    case maps::snapshot_request_t::UPDATE_TRANSFORM: updateTransform(iMessage); break;
     default: std::cout << "error: unknown snapshot command" << std::endl; break;
     }
   }

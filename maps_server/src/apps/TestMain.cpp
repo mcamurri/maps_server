@@ -4,9 +4,9 @@
 
 #include <lcm/lcm-cpp.hpp>
 #include <bot_lcmgl_client/lcmgl.h>
-#include <lcmtypes/drc/map_image_t.hpp>
-#include <lcmtypes/drc/map_cloud_t.hpp>
-#include <lcmtypes/drc/data_request_t.hpp>
+#include <lcmtypes/maps/image_t.hpp>
+#include <lcmtypes/maps/cloud_t.hpp>
+#include <lcmtypes/maps/data_request_t.hpp>
 
 #include <maps/SensorDataReceiver.hpp>
 #include <maps/MapManager.hpp>
@@ -90,7 +90,7 @@ public:
 
     // get point cloud corresponding to this time range
     PointCloudView::Ptr cloudView = localMap->getAsPointCloud(0, bounds);
-    drc::map_cloud_t cloudMessage;
+    maps::cloud_t cloudMessage;
 
     // publish compressed point cloud view over dummy lcm channel
     LcmTranslator::toLcm(*cloudView, cloudMessage);
@@ -135,7 +135,7 @@ public:
     DepthImageView::Ptr depthImageView =
       localMap->getAsDepthImage(width, height, projector, bounds);
 
-    drc::map_image_t depthMsg;
+    maps::image_t depthMsg;
     LcmTranslator::toLcm(*depthImageView, depthMsg);
     LcmTranslator::fromLcm(depthMsg, *depthImageView);
 
@@ -278,7 +278,7 @@ int main() {
   sleep(3);
 
   DepthImageView::Ptr view = std::dynamic_pointer_cast<DepthImageView>
-    (helper->mViewClient->getView(drc::data_request_t::HEIGHT_MAP_SCENE));
+    (helper->mViewClient->getView(maps::data_request_t::HEIGHT_MAP_SCENE));
   view->setNormalRadius(2);
   view->setNormalMethod(DepthImageView::NormalMethodLeastSquares);
   

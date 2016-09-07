@@ -8,7 +8,7 @@
 #include <bot_param/param_util.h>
 #include <lcm/lcm-cpp.hpp>
 #include <lcmtypes/bot_core/images_t.hpp>
-#include <lcmtypes/drc/map_request_t.hpp>
+#include <lcmtypes/maps/request_t.hpp>
 
 #include <mutex>
 
@@ -133,7 +133,7 @@ struct FusedDepthHandler::Imp {
     return view;
   }
 
-  DepthImageView::Ptr getLatest(const drc::map_request_t& iRequest) {
+  DepthImageView::Ptr getLatest(const maps::request_t& iRequest) {
     // get latest fused depth map as view
     DepthImageView::Ptr depthView = getLatest();
     if (depthView == NULL) return depthView;
@@ -225,6 +225,6 @@ getLatest() const {
 }
 
 DepthImageView::Ptr FusedDepthHandler::
-getLatest(const drc::map_request_t& iRequest) const {
+getLatest(const maps::request_t& iRequest) const {
   return mImp->getLatest(iRequest);
 }

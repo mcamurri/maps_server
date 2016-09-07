@@ -6,8 +6,8 @@
 #include <vector>
 #include <Eigen/Geometry>
 
-namespace drc {
-  class map_request_t;
+namespace maps {
+  class request_t;
 }
 
 namespace maps {
@@ -29,7 +29,7 @@ public:
   getDepthImageView(const std::vector<Eigen::Vector4f>& iBoundPlanes);
 
   std::shared_ptr<DepthImageView>
-  getDepthImageView(const drc::map_request_t& iRequest);
+  getDepthImageView(const maps::request_t& iRequest);
 
 private:
   struct Imp;

@@ -7,14 +7,14 @@
 #include <iostream>
 #include <limits>
 
-#include <lcmtypes/drc/map_request_t.hpp>
-#include <lcmtypes/drc/map_image_t.hpp>
+#include <lcmtypes/maps/request_t.hpp>
+#include <lcmtypes/maps/image_t.hpp>
 
 using namespace maps;
 
 
 bool LcmTranslator::
-toLcm(const ViewBase::Spec& iSpec, drc::map_request_t& oMessage) {
+toLcm(const ViewBase::Spec& iSpec, maps::request_t& oMessage) {
   oMessage.map_id = iSpec.mMapId;
   oMessage.view_id = iSpec.mViewId;
   oMessage.active = iSpec.mActive;
@@ -23,13 +23,13 @@ toLcm(const ViewBase::Spec& iSpec, drc::map_request_t& oMessage) {
   oMessage.accum_type = iSpec.mAccumulationMethod;
   switch (iSpec.mType) {
   case ViewBase::TypeOctree:
-    oMessage.type = drc::map_request_t::OCTREE; break;
+    oMessage.type = maps::request_t::OCTREE; break;
   case ViewBase::TypePointCloud:
-    oMessage.type = drc::map_request_t::POINT_CLOUD; break;
+    oMessage.type = maps::request_t::POINT_CLOUD; break;
   case ViewBase::TypeDepthImage:
-    oMessage.type = drc::map_request_t::DEPTH_IMAGE; break;
+    oMessage.type = maps::request_t::DEPTH_IMAGE; break;
   case ViewBase::TypeScanBundle:
-    oMessage.type = drc::map_request_t::SCAN_BUNDLE; break;
+    oMessage.type = maps::request_t::SCAN_BUNDLE; break;
   default:
     std::cout << "LcmTranslator: bad type given in map spec" << std::endl;
     return false;
@@ -59,7 +59,7 @@ toLcm(const ViewBase::Spec& iSpec, drc::map_request_t& oMessage) {
 }
 
 bool LcmTranslator::
-fromLcm(const drc::map_request_t& iMessage, ViewBase::Spec& oSpec) {
+fromLcm(const maps::request_t& iMessage, ViewBase::Spec& oSpec) {
   oSpec.mMapId = iMessage.map_id;
   oSpec.mViewId = iMessage.view_id;
   oSpec.mActive = iMessage.active;
@@ -67,13 +67,13 @@ fromLcm(const drc::map_request_t& iMessage, ViewBase::Spec& oSpec) {
   oSpec.mRelativeLocation = iMessage.relative_location;
   oSpec.mAccumulationMethod = (ViewBase::AccumulationMethod)iMessage.accum_type;
   switch (iMessage.type) {
-  case drc::map_request_t::OCTREE:
+  case maps::request_t::OCTREE:
     oSpec.mType = ViewBase::TypeOctree; break;
-  case drc::map_request_t::POINT_CLOUD:
+  case maps::request_t::POINT_CLOUD:
     oSpec.mType = ViewBase::TypePointCloud; break;
-  case drc::map_request_t::DEPTH_IMAGE:
+  case maps::request_t::DEPTH_IMAGE:
     oSpec.mType = ViewBase::TypeDepthImage; break;
-  case drc::map_request_t::SCAN_BUNDLE:
+  case maps::request_t::SCAN_BUNDLE:
     oSpec.mType = ViewBase::TypeScanBundle; break;
   default:
     std::cout << "LcmTranslator: bad type given in map_request" << std::endl;
@@ -102,7 +102,7 @@ fromLcm(const drc::map_request_t& iMessage, ViewBase::Spec& oSpec) {
 }
 
 bool LcmTranslator::
-toLcm(const maps::DataBlob& iBlob, drc::map_blob_t& oMessage) {
+toLcm(const maps::DataBlob& iBlob, maps::blob_t& oMessage) {
   DataBlob::Spec spec = iBlob.getSpec();
   oMessage.num_dims = spec.mDimensions.size();
   oMessage.dimensions.resize(oMessage.num_dims);
@@ -113,20 +113,20 @@ toLcm(const maps::DataBlob& iBlob, drc::map_blob_t& oMessage) {
             oMessage.stride_bytes.begin());
   switch (spec.mCompressionType) {
   case DataBlob::CompressionTypeNone:
-    oMessage.compression = drc::map_blob_t::UNCOMPRESSED; break;
+    oMessage.compression = maps::blob_t::UNCOMPRESSED; break;
   case DataBlob::CompressionTypeZlib:
-    oMessage.compression = drc::map_blob_t::ZLIB; break;
+    oMessage.compression = maps::blob_t::ZLIB; break;
   default:
     std::cout << "LcmTranslator: bad compression type in blob" << std::endl;
     return false;
   }
   switch(spec.mDataType) {
   case DataBlob::DataTypeUint8:
-    oMessage.data_type = drc::map_blob_t::UINT8; break;
+    oMessage.data_type = maps::blob_t::UINT8; break;
   case DataBlob::DataTypeUint16:
-    oMessage.data_type = drc::map_blob_t::UINT16; break;
+    oMessage.data_type = maps::blob_t::UINT16; break;
   case DataBlob::DataTypeFloat32:
-    oMessage.data_type = drc::map_blob_t::FLOAT32; break;
+    oMessage.data_type = maps::blob_t::FLOAT32; break;
   case DataBlob::DataTypeInt32:
   case DataBlob::DataTypeFloat64:
   default:
@@ -139,7 +139,7 @@ toLcm(const maps::DataBlob& iBlob, drc::map_blob_t& oMessage) {
 }
 
 bool LcmTranslator::
-fromLcm(const drc::map_blob_t& iMessage, maps::DataBlob& oBlob) {
+fromLcm(const maps::blob_t& iMessage, maps::DataBlob& oBlob) {
   DataBlob::Spec spec;
   spec.mDimensions.resize(iMessage.dimensions.size());
   std::copy(iMessage.dimensions.begin(), iMessage.dimensions.end(),
@@ -148,20 +148,20 @@ fromLcm(const drc::map_blob_t& iMessage, maps::DataBlob& oBlob) {
   std::copy(iMessage.stride_bytes.begin(), iMessage.stride_bytes.end(),
             spec.mStrideBytes.begin());
   switch (iMessage.compression) {
-  case drc::map_blob_t::UNCOMPRESSED:
+  case maps::blob_t::UNCOMPRESSED:
     spec.mCompressionType = maps::DataBlob::CompressionTypeNone; break;
-  case drc::map_blob_t::ZLIB:
+  case maps::blob_t::ZLIB:
     spec.mCompressionType = maps::DataBlob::CompressionTypeZlib; break;
   default:
     std::cout << "LcmTranslator: bad compression type in cloud" << std::endl;
     return false;
   }
   switch (iMessage.data_type) {
-  case drc::map_blob_t::UINT8:
+  case maps::blob_t::UINT8:
     spec.mDataType = maps::DataBlob::DataTypeUint8; break;
-  case drc::map_blob_t::UINT16:
+  case maps::blob_t::UINT16:
     spec.mDataType = maps::DataBlob::DataTypeUint16; break;
-  case drc::map_blob_t::FLOAT32:
+  case maps::blob_t::FLOAT32:
     spec.mDataType = maps::DataBlob::DataTypeFloat32; break;
   default:
     std::cout << "LcmTranslator: bad blob data type" << std::endl;
@@ -172,7 +172,7 @@ fromLcm(const drc::map_blob_t& iMessage, maps::DataBlob& oBlob) {
 }
 
 bool LcmTranslator::
-toLcm(const DepthImageView& iView, drc::map_image_t& oMessage,
+toLcm(const DepthImageView& iView, maps::image_t& oMessage,
       const float iQuantMax, const bool iCompress) {
 
   oMessage.view_id = iView.getId();
@@ -257,7 +257,7 @@ toLcm(const DepthImageView& iView, drc::map_image_t& oMessage,
 }
 
 bool LcmTranslator::
-fromLcm(const drc::map_image_t& iMessage, DepthImageView& oView) {
+fromLcm(const maps::image_t& iMessage, DepthImageView& oView) {
 
   // transform from reference to image coords
   Eigen::Projective3f xform;

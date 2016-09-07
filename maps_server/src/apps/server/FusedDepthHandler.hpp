@@ -9,8 +9,8 @@ namespace lcm {
   class Subscription;
 }
 
-namespace drc {
-  class map_request_t;
+namespace maps {
+  class request_t;
 }
 
 namespace maps {
@@ -34,7 +34,7 @@ public:
   std::shared_ptr<DepthImageView> getLatest() const;
 
   std::shared_ptr<DepthImageView>
-  getLatest(const drc::map_request_t& iRequest) const;
+  getLatest(const maps::request_t& iRequest) const;
 
 protected:
   struct Imp;

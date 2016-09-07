@@ -4,7 +4,7 @@
 #include <ConciseArgs>
 #include <boost/shared_ptr.hpp>
 #include <lcm/lcm-cpp.hpp>
-#include <lcmtypes/drc/map_octree_t.hpp>
+#include <lcmtypes/maps/octree_t.hpp>
 #include <octomap/octomap.h>
 using namespace octomap;
 
@@ -25,7 +25,7 @@ class App{
     boost::shared_ptr<lcm::LCM> lcm_;
     
     void octreeHandler(const lcm::ReceiveBuffer* rbuf, 
-                      const std::string& channel, const  drc::map_octree_t* msg);
+                      const std::string& channel, const  maps::octree_t* msg);
     
     OcTree* tree_;  
 
@@ -43,7 +43,7 @@ App::App(boost::shared_ptr< lcm::LCM >& lcm_, AppConfig app_cfg_) : lcm_(lcm_),
   tree_  = new OcTree(1); // resolution reset else where
 }
 
-void App::octreeHandler(const lcm::ReceiveBuffer* rbuf, const std::string& channel, const  drc::map_octree_t* msg){
+void App::octreeHandler(const lcm::ReceiveBuffer* rbuf, const std::string& channel, const  maps::octree_t* msg){
   std::cout << "MAP_OCTREE received\n";
 
   // TODO: Currently not handling transform, assuming identity transform

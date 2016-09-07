@@ -2,10 +2,10 @@
 
 #include <lcm/lcm-cpp.hpp>
 #include <lcm/lcm_coretypes.h>
-#include <lcmtypes/drc/map_octree_t.hpp>
-#include <lcmtypes/drc/map_cloud_t.hpp>
-#include <lcmtypes/drc/map_image_t.hpp>
-#include <lcmtypes/drc/map_catalog_t.hpp>
+#include <lcmtypes/maps/octree_t.hpp>
+#include <lcmtypes/maps/cloud_t.hpp>
+#include <lcmtypes/maps/image_t.hpp>
+#include <lcmtypes/maps/catalog_t.hpp>
 #include <thread>
 #include <maps_utils/Clock.hpp>
 
@@ -116,8 +116,8 @@ struct ViewClient::Worker {
       if (len < 0) continue;
 
       // handle catalog
-      if (hash == drc::map_catalog_t::getHash()) {
-        drc::map_catalog_t catalog;
+      if (hash == maps::catalog_t::getHash()) {
+        maps::catalog_t catalog;
         catalog.decode(buf, 0, msg->mBytes.size());
         bool changed = false;
         std::set<int64_t> catalogIds;
@@ -159,8 +159,8 @@ struct ViewClient::Worker {
       ViewPtr view;
 
       // handle octree
-      if (hash == drc::map_octree_t::getHash()) {
-        drc::map_octree_t octree;
+      if (hash == maps::octree_t::getHash()) {
+        maps::octree_t octree;
         octree.decode(buf, 0, msg->mBytes.size());
         auto octreeView = mOctreeViewPool.get();
         if (octreeView == NULL) {
@@ -173,8 +173,8 @@ struct ViewClient::Worker {
       }
 
       // handle cloud
-      else if (hash == drc::map_cloud_t::getHash()) {
-        drc::map_cloud_t cloud;
+      else if (hash == maps::cloud_t::getHash()) {
+        maps::cloud_t cloud;
         cloud.decode(buf, 0, msg->mBytes.size());
         auto cloudView = mPointCloudViewPool.get();
         if (cloudView == NULL) {
@@ -187,8 +187,8 @@ struct ViewClient::Worker {
       }
 
       // handle depth image
-      else if (hash == drc::map_image_t::getHash()) {
-        drc::map_image_t image;
+      else if (hash == maps::image_t::getHash()) {
+        maps::image_t image;
         image.decode(buf, 0, msg->mBytes.size());
         auto depthView = mDepthImageViewPool.get();
         if (depthView == NULL) {
@@ -264,7 +264,7 @@ void ViewClient::removeAllViewChannels() {
 }
 
 int64_t ViewClient::request(const ViewBase::Spec& iSpec) {
-  drc::map_request_t message;
+  maps::request_t message;
   LcmTranslator::toLcm(iSpec, message);
   message.utime = drc::Clock::instance()->getCurrentTime();
   if (message.view_id < 0) {

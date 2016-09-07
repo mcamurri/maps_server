@@ -3,15 +3,15 @@
 #include <chrono>
 
 #include <lcm/lcm-cpp.hpp>
-#include <lcmtypes/drc/map_octree_t.hpp>
-#include <lcmtypes/drc/map_cloud_t.hpp>
-#include <lcmtypes/drc/map_image_t.hpp>
-#include <lcmtypes/drc/map_scans_t.hpp>
-#include <lcmtypes/drc/map_request_t.hpp>
-#include <lcmtypes/drc/map_command_t.hpp>
-#include <lcmtypes/drc/map_params_t.hpp>
-#include <lcmtypes/drc/map_catalog_t.hpp>
-#include <lcmtypes/drc/data_request_t.hpp>
+#include <lcmtypes/maps/octree_t.hpp>
+#include <lcmtypes/maps/cloud_t.hpp>
+#include <lcmtypes/maps/image_t.hpp>
+#include <lcmtypes/maps/scans_t.hpp>
+#include <lcmtypes/maps/request_t.hpp>
+#include <lcmtypes/maps/command_t.hpp>
+#include <lcmtypes/maps/params_t.hpp>
+#include <lcmtypes/maps/catalog_t.hpp>
+#include <lcmtypes/maps/data_request_t.hpp>
 
 #include <maps/MapManager.hpp>
 #include <maps/PointCloudView.hpp>
@@ -141,7 +141,7 @@ struct ViewWorker {
 
   BotWrapper::Ptr mBotWrapper;
   bool mActive;
-  drc::map_request_t mRequest;
+  maps::request_t mRequest;
   std::shared_ptr<Collector> mCollector;
   std::shared_ptr<StereoHandler> mStereoHandlerHead;
   std::shared_ptr<FusedDepthHandler> mFusedDepthHandler;
@@ -193,10 +193,10 @@ struct ViewWorker {
       LcmTranslator::fromLcm(mRequest, spec);
 
       // TODO: HACK for stereo data; need to think about cleaner approach
-      if (mRequest.view_id == drc::data_request_t::STEREO_MAP_HEAD) {
+      if (mRequest.view_id == maps::data_request_t::STEREO_MAP_HEAD) {
         DepthImageView::Ptr view;
         switch (mRequest.view_id) {
-        case drc::data_request_t::STEREO_MAP_HEAD:
+        case maps::data_request_t::STEREO_MAP_HEAD:
           if (mStereoHandlerHead != NULL) {
             view = mStereoHandlerHead->getDepthImageView(spec.mClipPlanes);
           }
@@ -205,7 +205,7 @@ struct ViewWorker {
         }
         if (view != NULL) {
           view->setId(mRequest.view_id);
-          drc::map_image_t msg;
+          maps::image_t msg;
           LcmTranslator::toLcm(*view, msg);
           msg.utime = drc::Clock::instance()->getCurrentTime();
           msg.map_id = mRequest.map_id;
@@ -223,17 +223,17 @@ struct ViewWorker {
       }
 
       // fused depth
-      else if ((mRequest.view_id == drc::data_request_t::FUSED_DEPTH) ||
-               (mRequest.view_id == drc::data_request_t::FUSED_HEIGHT) ||
-               (mRequest.view_id == drc::data_request_t::STEREO_HEIGHT)) {
+      else if ((mRequest.view_id == maps::data_request_t::FUSED_DEPTH) ||
+               (mRequest.view_id == maps::data_request_t::FUSED_HEIGHT) ||
+               (mRequest.view_id == maps::data_request_t::STEREO_HEIGHT)) {
         DepthImageView::Ptr view;
-        if (mRequest.view_id == drc::data_request_t::FUSED_DEPTH) {
+        if (mRequest.view_id == maps::data_request_t::FUSED_DEPTH) {
           view = mFusedDepthHandler->getLatest();
         }
-        else if (mRequest.view_id == drc::data_request_t::FUSED_HEIGHT) {
+        else if (mRequest.view_id == maps::data_request_t::FUSED_HEIGHT) {
           view = mFusedDepthHandler->getLatest(mRequest);
         }
-        else if (mRequest.view_id == drc::data_request_t::STEREO_HEIGHT) {
+        else if (mRequest.view_id == maps::data_request_t::STEREO_HEIGHT) {
           view = mStereoHandlerHead->getDepthImageView(mRequest);
         }
         if (view == NULL) {
@@ -241,11 +241,11 @@ struct ViewWorker {
         }
         else {
           view->setId(mRequest.view_id);
-          //if ((mRequest.view_id == drc::data_request_t::FUSED_HEIGHT) ||
-          //    (mRequest.view_id == drc::data_request_t::STEREO_HEIGHT)) {
-          //  view->setId(drc::data_request_t::HEIGHT_MAP_SCENE);
+          //if ((mRequest.view_id == maps::data_request_t::FUSED_HEIGHT) ||
+          //    (mRequest.view_id == maps::data_request_t::STEREO_HEIGHT)) {
+          //  view->setId(maps::data_request_t::HEIGHT_MAP_SCENE);
           //}
-          drc::map_image_t msg;
+          maps::image_t msg;
           LcmTranslator::toLcm(*view, msg);
           msg.utime = drc::Clock::instance()->getCurrentTime();
           msg.map_id = mRequest.map_id;
@@ -310,13 +310,13 @@ struct ViewWorker {
         }
 
         // get and publish octree
-        if (mRequest.type == drc::map_request_t::OCTREE) {
+        if (mRequest.type == maps::request_t::OCTREE) {
           OctreeView::Ptr octree =
             localMap->getAsOctree(mRequest.resolution, false,
                                   Eigen::Vector3f(0,0,0), bounds);
           octree->setId(mRequest.view_id);
           std::cout << "Publishing octree..." << std::endl;
-          drc::map_octree_t octMsg;
+          maps::octree_t octMsg;
           LcmTranslator::toLcm(*octree, octMsg);
           octMsg.utime = drc::Clock::instance()->getCurrentTime();
           octMsg.map_id = localMap->getId();
@@ -329,11 +329,11 @@ struct ViewWorker {
         }
 
         // get and publish point cloud
-        else if (mRequest.type == drc::map_request_t::POINT_CLOUD) {
+        else if (mRequest.type == maps::request_t::POINT_CLOUD) {
           PointCloudView::Ptr cloud =
             localMap->getAsPointCloud(mRequest.resolution, bounds);
           cloud->setId(mRequest.view_id);
-          drc::map_cloud_t msgCloud;
+          maps::cloud_t msgCloud;
           LcmTranslator::toLcm(*cloud, msgCloud, mRequest.quantization_max);
           msgCloud.utime = drc::Clock::instance()->getCurrentTime();
           msgCloud.map_id = localMap->getId();
@@ -347,7 +347,7 @@ struct ViewWorker {
         }
 
         // get and publish depth image
-        else if (mRequest.type == drc::map_request_t::DEPTH_IMAGE) {
+        else if (mRequest.type == maps::request_t::DEPTH_IMAGE) {
           Eigen::Projective3f projector;
           for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
@@ -363,7 +363,7 @@ struct ViewWorker {
             localMap->getAsDepthImage(mRequest.width, mRequest.height,
                                       projector, accumMethod, bounds);
           image->setId(mRequest.view_id);
-          drc::map_image_t msgImg;
+          maps::image_t msgImg;
           LcmTranslator::toLcm(*image, msgImg, mRequest.quantization_max);
           msgImg.utime = drc::Clock::instance()->getCurrentTime();
           msgImg.map_id = localMap->getId();
@@ -376,7 +376,7 @@ struct ViewWorker {
             ")" << std::endl;
         }
 
-        else if (mRequest.type == drc::map_request_t::SCAN_BUNDLE) {
+        else if (mRequest.type == maps::request_t::SCAN_BUNDLE) {
           const int kMaxNumScans = 500;
           auto bundle = localMap->getAsScanBundle(bounds);
           bundle->setId(mRequest.view_id);
@@ -405,7 +405,7 @@ struct ViewWorker {
             ScanBundleView curBundle;
             curBundle.setId(bundle->getId());
             curBundle.set(curScans);
-            drc::map_scans_t msgScans;
+            maps::scans_t msgScans;
             LcmTranslator::toLcm(curBundle, msgScans,
                                  mRequest.quantization_max, true, true);
             msgScans.utime = drc::Clock::instance()->getCurrentTime();
@@ -495,13 +495,13 @@ public:
 
   void onRequest(const lcm::ReceiveBuffer* iBuf,
                  const std::string& iChannel,
-                 const drc::map_request_t* iMessage) {
+                 const maps::request_t* iMessage) {
     addViewWorker(*iMessage);
   }
 
   void onMapCommand(const lcm::ReceiveBuffer* iBuf,
                     const std::string& iChannel,
-                    const drc::map_command_t* iMessage) {
+                    const maps::command_t* iMessage) {
     int64_t id = iMessage->map_id;
     auto manager = mCollector->getMapManager();
     if (id < 0) {
@@ -515,13 +515,13 @@ public:
       }
     }
     switch (iMessage->command) {
-    case drc::map_command_t::CLEAR:
+    case maps::command_t::CLEAR:
       manager->clearMap(id);
       break;
-    case drc::map_command_t::STOP:
+    case maps::command_t::STOP:
       manager->stopUpdatingMap(id);
       break;
-    case drc::map_command_t::START:
+    case maps::command_t::START:
       manager->startUpdatingMap(id);
       break;
     default:
@@ -531,7 +531,7 @@ public:
 
   void onMapParams(const lcm::ReceiveBuffer* iBuf,
                    const std::string& iChannel,
-                   const drc::map_params_t* iMessage) {
+                   const maps::params_t* iMessage) {
     LocalMap::Spec spec;
     LcmTranslator::fromLcm(*iMessage, spec);
     mCollector->getMapManager()->createMap(spec);
@@ -542,10 +542,10 @@ public:
     sendCatalog();
   }
 
-  void addViewWorker(const drc::map_request_t& iRequest) {
+  void addViewWorker(const maps::request_t& iRequest) {
     ViewWorkerMap::const_iterator item = mViewWorkers.find(iRequest.view_id);
     if (item != mViewWorkers.end()) {
-      if ((iRequest.type == drc::map_request_t::NONE) ||
+      if ((iRequest.type == maps::request_t::NONE) ||
           (!iRequest.active)) {
         std::cout << "Removing view " << iRequest.view_id << std::endl;
         ViewWorker::Ptr worker = item->second;
@@ -578,18 +578,18 @@ public:
 
   void sendCatalog() {
     std::cout << "sending catalog" << std::endl;
-    drc::map_catalog_t catalog;
+    maps::catalog_t catalog;
     catalog.utime = drc::Clock::instance()->getCurrentTime();
     auto manager = mCollector->getMapManager();
     std::vector<int64_t> mapIds = manager->getAllMapIds();
-    catalog.maps.reserve(mapIds.size());
+    catalog.map_params.reserve(mapIds.size());
     for (int i = 0; i < mapIds.size(); ++i) {
       LocalMap::Ptr localMap = manager->getMap(mapIds[i]);
       if (localMap != NULL) {
-        drc::map_params_t params;
+        maps::params_t params;
         LcmTranslator::toLcm(localMap->getSpec(), params);
         params.utime = catalog.utime;
-        catalog.maps.push_back(params);
+        catalog.map_params.push_back(params);
       }
     }
     catalog.views.reserve(mViewWorkers.size());
@@ -598,7 +598,7 @@ public:
       catalog.views.push_back(iter->second->mRequest);
     }
     catalog.num_views = catalog.views.size();
-    catalog.num_maps = catalog.maps.size();
+    catalog.num_maps = catalog.map_params.size();
     mBotWrapper->getLcm()->publish("MAP_CATALOG", &catalog);
   }
 };
@@ -716,21 +716,21 @@ int main(const int iArgc, const char** iArgv) {
   std::thread catalogThread(catalogSender);
 
   // start publishing data (scan bundles)
-  drc::map_request_t request;
+  maps::request_t request;
   request.utime = drc::Clock::instance()->getCurrentTime();
   request.map_id = 2;
-  request.view_id = drc::data_request_t::SCANS_HALF_SWEEP;
-  request.type = drc::map_request_t::SCAN_BUNDLE;
+  request.view_id = maps::data_request_t::SCANS_HALF_SWEEP;
+  request.type = maps::request_t::SCAN_BUNDLE;
   request.resolution = 0.005;
   request.frequency = 1.0f/publishPeriod;
   request.quantization_max = 0.005;
   if (latestSwath) {
-    request.time_mode = drc::map_request_t::ROLL_ANGLE_RELATIVE;
+    request.time_mode = maps::request_t::ROLL_ANGLE_RELATIVE;
     request.time_min = -190;
     request.time_max = 0;
   }
   else {
-    request.time_mode = drc::map_request_t::ROLL_ANGLE_ABSOLUTE;
+    request.time_mode = maps::request_t::ROLL_ANGLE_ABSOLUTE;
     request.time_min = -3;
     request.time_max = 182;
   }

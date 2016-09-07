@@ -55,7 +55,7 @@ GroundFilter(const BotWrapper::Ptr& iBotWrapper) {
 void GroundFilter::
 onSettings(const lcm::ReceiveBuffer* iBuf,
            const std::string& iChannel,
-           const drc::map_depth_settings_t* iMessage) {
+           const maps::depth_settings_t* iMessage) {
   mActive = iMessage->remove_ground;
 }
 

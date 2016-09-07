@@ -5,8 +5,8 @@
 
 #include <lcm/lcm-cpp.hpp>
 #include <lcm/lcm_coretypes.h>
-#include <lcmtypes/drc/map_image_t.hpp>
-#include <lcmtypes/drc/map_request_t.hpp>
+#include <lcmtypes/maps/image_t.hpp>
+#include <lcmtypes/maps/request_t.hpp>
 #include <maps_utils/BotWrapper.hpp>
 
 #include "Utils.hpp"
@@ -113,8 +113,8 @@ struct ViewClient::Worker {
       ViewPtr view;
 
       // handle depth image
-      if (hash == drc::map_image_t::getHash()) {
-        drc::map_image_t image;
+      if (hash == maps::image_t::getHash()) {
+        maps::image_t image;
         image.decode(buf, 0, msg->mBytes.size());
         auto depthView = mDepthImageViewPool.get();
         if (depthView == NULL) {
@@ -188,7 +188,7 @@ void ViewClient::removeAllViewChannels() {
 }
 
 int64_t ViewClient::request(const ViewBase::Spec& iSpec) {
-  drc::map_request_t message;
+  maps::request_t message;
   LcmTranslator::toLcm(iSpec, message);
   message.utime = mBotWrapper->getCurrentTime();
   if (message.view_id < 0) {

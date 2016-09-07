@@ -2,8 +2,8 @@
 
 #include <lcm/lcm-cpp.hpp>
 #include <bot_lcmgl_client/lcmgl.h>
-#include <lcmtypes/drc/map_image_t.hpp>
-#include <lcmtypes/drc/map_cloud_t.hpp>
+#include <lcmtypes/maps/image_t.hpp>
+#include <lcmtypes/maps/cloud_t.hpp>
 
 #include <maps/SensorDataReceiver.hpp>
 #include <maps/MapManager.hpp>
@@ -81,7 +81,7 @@ public:
 
     // get point cloud corresponding to this time range
     PointCloudView::Ptr cloudView = localMap->getAsPointCloud(0, bounds);
-    drc::map_cloud_t cloudMessage;
+    maps::cloud_t cloudMessage;
 
     // publish compressed point cloud view over dummy lcm channel
     LcmTranslator::toLcm(*cloudView, cloudMessage);
@@ -151,7 +151,7 @@ public:
     // transmit compressed depth image over dummy lcm channel
     // note that the corresponding LcmTranslator::fromLcm() method
     // can be used by the receiver to decode the message when it arrives
-    drc::map_image_t depthMsg;
+    maps::image_t depthMsg;
     LcmTranslator::toLcm(*depthImageView, depthMsg);
     mState->mBotWrapper->getLcm()->publish("DUMMY_DEPTH", &depthMsg);
   }
