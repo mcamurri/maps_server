@@ -1,15 +1,15 @@
-package drc;
+package maps;
 
-struct map_catalog_t
+struct catalog_t
 {
   // timestamp of this message
   int64_t utime;
 
   // current active maps
   int32_t num_maps;
-  map_params_t map_params[num_maps]; // variable was maps
+  params_t map_params[num_maps]; // variable was maps
 
   // current active views
   int32_t num_views;
-  map_request_t views[num_views];
+  request_t views[num_views];
 }
