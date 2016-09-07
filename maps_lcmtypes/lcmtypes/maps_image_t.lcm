@@ -1,0 +1,23 @@
+package maps;
+
+struct image_t
+{
+  // timestamp of this message
+  int64_t utime;
+
+  // id of map
+  int64_t map_id;
+
+  // id of view
+  int64_t view_id;
+
+  // projective transform from reference to image coords
+  float transform[4][4];
+
+  // image data
+  blob_t blob;
+
+  // linear transformation to restore raw data values
+  float data_scale;
+  float data_shift;
+}
