@@ -6,7 +6,7 @@
 #include <lcmtypes/bot_core/utime_t.hpp>
 #include <lcmtypes/bot_core/robot_state_t.hpp>
 
-using namespace drc;
+using namespace maps;
 
 struct Clock::Impl {
   std::shared_ptr<lcm::LCM> mLcm;
@@ -78,7 +78,7 @@ struct Clock::Impl {
     int64_t dt = curRealTime - mLastMessageReceivedTime;
     if ((mLastMessageReceivedTime > 0) && (dt > mTimeoutInterval*1000)) {
       if (mVerbose) {
-        std::cout << "drc::Clock: WARNING: last timestamp message received " <<
+        std::cout << "maps::Clock: WARNING: last timestamp message received " <<
           (dt/1e6) << " seconds ago" << std::endl;
       }
     }
@@ -93,7 +93,7 @@ struct Clock::Impl {
     int64_t dt = curRealTime - mLastMessageReceivedTime;
     if ((mLastMessageReceivedTime > 0) && (dt > mTimeoutInterval*1000)) {
       if (mVerbose) {
-        std::cout << "drc::Clock: WARNING: last timestamp message received " <<
+        std::cout << "maps::Clock: WARNING: last timestamp message received " <<
           (dt/1e6) << " seconds ago" << std::endl;
       }
     }
@@ -170,7 +170,7 @@ getCurrentTime() const {
     int64_t dt = curRealTime - mImpl->mLastMessageReceivedTime;
     if (dt > mImpl->mTimeoutInterval*1000) {
       if (mImpl->mVerbose) {
-        std::cout << "drc::Clock: WARNING: last timestamp message " <<
+        std::cout << "maps::Clock: WARNING: last timestamp message " <<
           "received " << (dt/1e6) << " seconds ago" << std::endl;
       }
     }

@@ -6,7 +6,7 @@
 #include <lcmtypes/bot_param/set_t.hpp>
 #include <maps_utils/Clock.hpp>
 
-using namespace drc;
+using namespace maps;
 
 namespace {
   const std::string kSetParamChannel = "PARAM_SET";
@@ -17,7 +17,7 @@ namespace {
                               const bool iIsArray=false) {
     BotParam* botParam = iBotWrapper.getBotParam();
     bot_param::set_t msg;
-    msg.utime = drc::Clock::instance()->getCurrentTime();
+    msg.utime = maps::Clock::instance()->getCurrentTime();
     msg.sequence_number = bot_param_get_seqno(botParam);
     msg.server_id = bot_param_get_server_id(botParam);
     msg.numEntries = 1;
@@ -167,7 +167,7 @@ getTransform(const std::string& iFrom, const std::string& iTo,
   return true;
 }
 
-namespace drc {
+namespace maps {
   // explicit instantiations
   template bool BotWrapper::
   getTransform(const std::string& iFrom, const std::string& iTo,

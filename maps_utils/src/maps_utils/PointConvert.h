@@ -20,7 +20,7 @@
 
 #include <vector>
 
-namespace drc{
+namespace maps{
 namespace PointConvert{
 
   template<typename T1, typename T2>

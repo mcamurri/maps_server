@@ -23,7 +23,7 @@
 #include <pcl/registration/icp.h>
 
 struct State : public maps::Collector::DataListener {
-  std::shared_ptr<drc::LcmWrapper> mLcmWrapper;
+  std::shared_ptr<maps::LcmWrapper> mLcmWrapper;
   std::shared_ptr<lcm::LCM> mLcm;
   std::shared_ptr<maps::BotWrapper> mBotWrapper;
   std::shared_ptr<maps::Collector> mCollector;
@@ -49,7 +49,7 @@ struct State : public maps::Collector::DataListener {
 
   State() {
     // initialize some variables
-    mLcmWrapper.reset(new drc::LcmWrapper());
+    mLcmWrapper.reset(new maps::LcmWrapper());
     mLcm = mLcmWrapper->get();
     mBotWrapper.reset(new maps::BotWrapper(mLcm));
     mCollector.reset(new maps::Collector());

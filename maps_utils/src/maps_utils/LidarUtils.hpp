@@ -1,10 +1,10 @@
-#ifndef _drc_LidarUtils_hpp_
-#define _drc_LidarUtils_hpp_
+#ifndef _maps_LidarUtils_hpp_
+#define _maps_LidarUtils_hpp_
 
 #include <vector>
 #include <Eigen/Geometry>
 
-namespace drc {
+namespace maps {
 class LidarUtils {
 public:
   static bool

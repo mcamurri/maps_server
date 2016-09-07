@@ -1,11 +1,11 @@
-#ifndef _drc_RansacGeneric_hpp_
-#define _drc_RansacGeneric_hpp_
+#ifndef _maps_RansacGeneric_hpp_
+#define _maps_RansacGeneric_hpp_
 
 #include <cmath>
 #include <vector>
 #include <algorithm>
 
-namespace drc {
+namespace maps {
 
 template<typename Problem>
 class RansacGeneric {

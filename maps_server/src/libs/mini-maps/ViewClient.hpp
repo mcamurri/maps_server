@@ -7,7 +7,7 @@
 #include <memory>
 #include "ViewBase.hpp"
 
-namespace drc {
+namespace maps {
   class BotWrapper;
 }
 
@@ -33,7 +33,7 @@ public:
   ViewClient();
   virtual ~ViewClient();
 
-  void setBotWrapper(const std::shared_ptr<drc::BotWrapper>& iWrapper);
+  void setBotWrapper(const std::shared_ptr<maps::BotWrapper>& iWrapper);
   void setRequestChannel(const std::string& iChannel);
   void setCatalogChannel(const std::string& iChannel);
   void addViewChannel(const std::string& iChannel);
@@ -67,7 +67,7 @@ protected:
   std::string mRequestChannel;
   std::string mCatalogChannel;
   std::vector<std::string> mViewChannels;
-  std::shared_ptr<drc::BotWrapper> mBotWrapper;
+  std::shared_ptr<maps::BotWrapper> mBotWrapper;
 
   std::shared_ptr<Worker> mWorker;
   ViewCollection mViews;

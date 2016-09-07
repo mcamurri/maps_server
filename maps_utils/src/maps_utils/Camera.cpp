@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-using namespace drc;
+using namespace maps;
 
 struct Camera::Helper {
   Eigen::Matrix3d mCalibrationMatrix;

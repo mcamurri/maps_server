@@ -5,7 +5,7 @@
 #include <lcm/lcm-cpp.hpp>
 #include <sys/select.h>
 
-using namespace drc;
+using namespace maps;
 
 struct LcmWrapper::Helper {
   bool mIsRunning;

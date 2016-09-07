@@ -26,14 +26,14 @@ struct ViewData {
 };
 
 struct State {
-  std::shared_ptr<drc::LcmWrapper> mLcmWrapper;
+  std::shared_ptr<maps::LcmWrapper> mLcmWrapper;
   std::shared_ptr<lcm::LCM> mLcm;
   std::shared_ptr<maps::BotWrapper> mBotWrapper;
   std::shared_ptr<maps::ViewClient> mViewClient;
   std::unordered_map<int64_t,ViewData> mViewDataSet;
 
   State() {
-    mLcmWrapper.reset(new drc::LcmWrapper());
+    mLcmWrapper.reset(new maps::LcmWrapper());
     mLcm = mLcmWrapper->get();
     mBotWrapper.reset(new maps::BotWrapper(mLcm));
     mViewClient.reset(new maps::ViewClient());

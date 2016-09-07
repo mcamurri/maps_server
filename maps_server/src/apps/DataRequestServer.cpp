@@ -25,7 +25,7 @@ struct Worker {
   bool mActive;
   maps::data_request_t mRequest;
   std::shared_ptr<lcm::LCM> mLcm;
-  std::shared_ptr<drc::BotWrapper> mBotWrapper;
+  std::shared_ptr<maps::BotWrapper> mBotWrapper;
   std::shared_ptr<maps::RobotState> mRobotState;
   std::thread mThread;
 
@@ -137,7 +137,7 @@ struct Worker {
     mAffordanceWrapper->getAllAffordancesPlus(affordances);
     drc::affordance_plus_collection_t msg;
     msg.name = "updateFromDataRequestServer";
-    msg.utime = drc::Clock::instance()->getCurrentTime();
+    msg.utime = maps::Clock::instance()->getCurrentTime();
     msg.map_id = -1;
     msg.naffs = affordances.size();
     for (int i = 0; i < affordances.size(); ++i) {
@@ -367,7 +367,7 @@ struct Worker {
     Eigen::Vector3f boxMin = iPos-Eigen::Vector3f(1,1,1)*iSize;
     Eigen::Vector3f boxMax = iPos+Eigen::Vector3f(1,1,1)*iSize;
     maps::request_t msg;
-    msg.utime = drc::Clock::instance()->getCurrentTime();
+    msg.utime = maps::Clock::instance()->getCurrentTime();
     msg.map_id = 1;
     msg.view_id = 1;
     msg.type = maps::request_t::POINT_CLOUD;
@@ -393,7 +393,7 @@ struct Worker {
 
   void sendScansHalfSweep() {
     maps::request_t msg;
-    msg.utime = drc::Clock::instance()->getCurrentTime();
+    msg.utime = maps::Clock::instance()->getCurrentTime();
     msg.map_id = 2;
     msg.view_id = maps::data_request_t::SCANS_HALF_SWEEP;
     msg.type = maps::request_t::SCAN_BUNDLE;
@@ -518,7 +518,7 @@ struct Worker {
 
   maps::request_t prepareRequestMessage() {
     maps::request_t msg;
-    msg.utime = drc::Clock::instance()->getCurrentTime();
+    msg.utime = maps::Clock::instance()->getCurrentTime();
     msg.map_id = 1;
     msg.view_id = 1;
     msg.type = maps::request_t::OCTREE;
@@ -547,17 +547,17 @@ struct Worker {
 
 struct State {
   std::shared_ptr<lcm::LCM> mLcm; 
-  std::shared_ptr<drc::BotWrapper> mBotWrapper;
+  std::shared_ptr<maps::BotWrapper> mBotWrapper;
   std::shared_ptr<maps::RobotState> mRobotState;
   typedef std::unordered_map<int,Worker::Ptr> WorkerMap;
   WorkerMap mWorkers;
 
   State() {
     mLcm.reset(new lcm::LCM());
-    mBotWrapper.reset(new drc::BotWrapper(mLcm));
+    mBotWrapper.reset(new maps::BotWrapper(mLcm));
     mRobotState.reset(new maps::RobotState(mLcm));
-    drc::Clock::instance()->setLcm(mLcm->getUnderlyingLCM());
-    drc::Clock::instance()->setVerbose(false);
+    maps::Clock::instance()->setLcm(mLcm->getUnderlyingLCM());
+    maps::Clock::instance()->setVerbose(false);
   }
 
   ~State() {

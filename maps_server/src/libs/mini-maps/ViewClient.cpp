@@ -31,7 +31,7 @@ struct ViewClient::Worker {
   };
 
   ViewClient* mClient;
-  drc::BotWrapper::Ptr mBotWrapper;
+  maps::BotWrapper::Ptr mBotWrapper;
   bool mRunning;
   std::vector<lcm::Subscription*> mViewSubscriptions;
   lcm::Subscription* mCatalogSubscription;
@@ -158,7 +158,7 @@ ViewClient::
 }
 
 void ViewClient::
-setBotWrapper(const std::shared_ptr<drc::BotWrapper>& iWrapper) {
+setBotWrapper(const std::shared_ptr<maps::BotWrapper>& iWrapper) {
   mBotWrapper = iWrapper;
   if (mWorker != NULL) mWorker->mBotWrapper = iWrapper;
 }

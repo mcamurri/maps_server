@@ -17,7 +17,7 @@ namespace {
                               const bool iIsArray=false) {
     BotParam* botParam = iBotWrapper.getBotParam();
     bot_param::set_t msg;
-    msg.utime = drc::Clock::instance()->getCurrentTime();
+    msg.utime = maps::Clock::instance()->getCurrentTime();
     msg.sequence_number = bot_param_get_seqno(botParam);
     msg.server_id = bot_param_get_server_id(botParam);
     msg.numEntries = 1;

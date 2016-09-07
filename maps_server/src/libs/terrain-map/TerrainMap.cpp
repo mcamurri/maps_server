@@ -48,7 +48,7 @@ struct TerrainMap::Helper {
   int64_t mMapPublishViewId;
   NormalMethod mNormalMethod;
   double mNormalRadius;
-  std::shared_ptr<drc::BotWrapper> mBotWrapper;
+  std::shared_ptr<maps::BotWrapper> mBotWrapper;
   lcm::Subscription* mPoseGroundSubscription;
 
   std::shared_ptr<maps::ViewClient> mViewClient;
@@ -58,7 +58,7 @@ struct TerrainMap::Helper {
   std::vector<float> mPreviousDepths;
   bool mListening;
 
-  Helper(const std::shared_ptr<drc::BotWrapper>& iBotWrapper) {
+  Helper(const std::shared_ptr<maps::BotWrapper>& iBotWrapper) {
     mBotWrapper = iBotWrapper;
     mUseFootPose = false;
     mOverrideHeights = false;
@@ -184,7 +184,7 @@ struct TerrainMap::Helper {
 };
 
 TerrainMap::
-TerrainMap(const std::shared_ptr<drc::BotWrapper>& iBotWrapper) {
+TerrainMap(const std::shared_ptr<maps::BotWrapper>& iBotWrapper) {
   mHelper.reset(new Helper(iBotWrapper));
 }
 

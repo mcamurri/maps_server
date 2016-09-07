@@ -12,8 +12,8 @@ using terrainmap::TerrainMap;
 
 int main() {
   std::shared_ptr<lcm::LCM> lcm(new lcm::LCM());
-  std::shared_ptr<drc::LcmWrapper> lcmWrapper(new drc::LcmWrapper(lcm));
-  std::shared_ptr<drc::BotWrapper> botWrapper(new drc::BotWrapper(lcm));
+  std::shared_ptr<maps::LcmWrapper> lcmWrapper(new maps::LcmWrapper(lcm));
+  std::shared_ptr<maps::BotWrapper> botWrapper(new maps::BotWrapper(lcm));
   TerrainMap terrainMap(botWrapper);
 
   terrainMap.setInfo(1000, "MAP_CONTROL_HEIGHT");

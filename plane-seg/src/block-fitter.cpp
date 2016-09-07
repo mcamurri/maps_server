@@ -24,8 +24,8 @@
 #include "BlockFitter.hpp"
 
 struct State {
-  drc::BotWrapper::Ptr mBotWrapper;
-  drc::LcmWrapper::Ptr mLcmWrapper;
+  maps::BotWrapper::Ptr mBotWrapper;
+  maps::LcmWrapper::Ptr mLcmWrapper;
   bool mRunContinuously;
   bool mDoFilter;
   bool mRemoveGround;
@@ -367,11 +367,11 @@ int main(const int iArgc, const char** iArgv) {
   }
 
   do {
-    state.mBotWrapper.reset(new drc::BotWrapper());
+    state.mBotWrapper.reset(new maps::BotWrapper());
   }
   while (state.mBotWrapper->getBotParam() == NULL);
   std::cout << "got bot params" << std::endl;
-  state.mLcmWrapper.reset(new drc::LcmWrapper(state.mBotWrapper->getLcm()));
+  state.mLcmWrapper.reset(new maps::LcmWrapper(state.mBotWrapper->getLcm()));
 
   if (triggerChannel.length() > 0) {
     state.mDoTrigger = true;

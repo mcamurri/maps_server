@@ -1,5 +1,5 @@
-#ifndef _drc_Camera_hpp_
-#define _drc_Camera_hpp_
+#ifndef _maps_Camera_hpp_
+#define _maps_Camera_hpp_
 
 #include <memory>
 #include <Eigen/Geometry>
@@ -7,7 +7,7 @@
 typedef struct _BotParam BotParam;
 typedef struct _BotCamTrans BotCamTrans;
 
-namespace drc {
+namespace maps {
 class Camera {
 public:
   typedef std::shared_ptr<Camera> Ptr;

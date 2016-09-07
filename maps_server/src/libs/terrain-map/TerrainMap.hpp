@@ -5,7 +5,7 @@
 #include <string>
 #include <Eigen/Geometry>
 
-namespace drc {
+namespace maps {
   class BotWrapper;
 }
 
@@ -29,7 +29,7 @@ public:
   };
 
 public:
-  TerrainMap(const std::shared_ptr<drc::BotWrapper>& iBotWrapper);
+  TerrainMap(const std::shared_ptr<maps::BotWrapper>& iBotWrapper);
   ~TerrainMap();
 
   // view id and depth map channel to listen on

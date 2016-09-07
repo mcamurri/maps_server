@@ -164,7 +164,7 @@ template<typename T>
 PlaneFitter::Result PlaneFitter::
 solve(const std::vector<Eigen::Vector3f>& iPoints) const {
   Result result;
-  drc::RansacGeneric<T> ransac;
+  maps::RansacGeneric<T> ransac;
   ransac.setMaximumError(mMaxDistance);
   ransac.setRefineUsingInliers(mRefineUsingInliers);
   ransac.setMaximumIterations(mMaxIterations);

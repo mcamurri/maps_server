@@ -230,7 +230,7 @@ int main() {
   for (int i = 0; i < ranges.size(); ++i) {
     ranges[i] = 3;
   }
-  drc::LidarUtils::interpolateScan(ranges, -fov/2*kPi/180,
+  maps::LidarUtils::interpolateScan(ranges, -fov/2*kPi/180,
                                    fov/numPoints*kPi/180, pose0, pose1, pts);
   for (auto pt : pts) {
     std::cout << pt.transpose() << std::endl;

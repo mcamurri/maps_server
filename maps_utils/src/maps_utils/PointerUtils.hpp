@@ -1,10 +1,10 @@
-#ifndef _drc_PointerUtils_hpp_
-#define _drc_PointerUtils_hpp_
+#ifndef _maps_PointerUtils_hpp_
+#define _maps_PointerUtils_hpp_
 
 #include <memory>
 #include <boost/shared_ptr.hpp>
 
-namespace drc {
+namespace maps {
 
 struct PointerUtils {
 

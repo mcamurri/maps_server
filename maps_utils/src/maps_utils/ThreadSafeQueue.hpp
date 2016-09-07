@@ -1,10 +1,10 @@
-#ifndef _drc_ThreadSafeQueue_hpp_
-#define _drc_ThreadSafeQueue_hpp_
+#ifndef _maps_ThreadSafeQueue_hpp_
+#define _maps_ThreadSafeQueue_hpp_
 
 #include <deque>
 #include <thread>
 
-namespace drc {
+namespace maps {
 
 template <typename T>
 class ThreadSafeQueue {

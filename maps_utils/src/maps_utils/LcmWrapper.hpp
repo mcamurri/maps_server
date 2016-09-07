@@ -9,7 +9,7 @@ namespace lcm {
 
 typedef struct _lcm_t lcm_t;
 
-namespace drc {
+namespace maps {
   
 class LcmWrapper {
 public:

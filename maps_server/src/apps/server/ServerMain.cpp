@@ -207,7 +207,7 @@ struct ViewWorker {
           view->setId(mRequest.view_id);
           maps::image_t msg;
           LcmTranslator::toLcm(*view, msg);
-          msg.utime = drc::Clock::instance()->getCurrentTime();
+          msg.utime = maps::Clock::instance()->getCurrentTime();
           msg.map_id = mRequest.map_id;
           msg.blob.utime = msg.utime;
           std::string chan =
@@ -247,7 +247,7 @@ struct ViewWorker {
           //}
           maps::image_t msg;
           LcmTranslator::toLcm(*view, msg);
-          msg.utime = drc::Clock::instance()->getCurrentTime();
+          msg.utime = maps::Clock::instance()->getCurrentTime();
           msg.map_id = mRequest.map_id;
           msg.blob.utime = msg.utime;
           std::string chan =
@@ -264,7 +264,7 @@ struct ViewWorker {
         LocalMap::SpaceTimeBounds bounds;
 
         // temporal bounds
-        int64_t curTime = drc::Clock::instance()->getCurrentTime();
+        int64_t curTime = maps::Clock::instance()->getCurrentTime();
         const double kPi = acos(-1);
         switch (spec.mTimeMode) {
         case ViewBase::TimeModeRelative:
@@ -318,7 +318,7 @@ struct ViewWorker {
           std::cout << "Publishing octree..." << std::endl;
           maps::octree_t octMsg;
           LcmTranslator::toLcm(*octree, octMsg);
-          octMsg.utime = drc::Clock::instance()->getCurrentTime();
+          octMsg.utime = maps::Clock::instance()->getCurrentTime();
           octMsg.map_id = localMap->getId();
           std::string chan =
             mRequest.channel.size()>0 ? mRequest.channel : "MAP_OCTREE";
@@ -335,7 +335,7 @@ struct ViewWorker {
           cloud->setId(mRequest.view_id);
           maps::cloud_t msgCloud;
           LcmTranslator::toLcm(*cloud, msgCloud, mRequest.quantization_max);
-          msgCloud.utime = drc::Clock::instance()->getCurrentTime();
+          msgCloud.utime = maps::Clock::instance()->getCurrentTime();
           msgCloud.map_id = localMap->getId();
           msgCloud.blob.utime = msgCloud.utime;
           std::string chan =
@@ -365,7 +365,7 @@ struct ViewWorker {
           image->setId(mRequest.view_id);
           maps::image_t msgImg;
           LcmTranslator::toLcm(*image, msgImg, mRequest.quantization_max);
-          msgImg.utime = drc::Clock::instance()->getCurrentTime();
+          msgImg.utime = maps::Clock::instance()->getCurrentTime();
           msgImg.map_id = localMap->getId();
           msgImg.blob.utime = msgImg.utime;
           std::string chan =
@@ -408,7 +408,7 @@ struct ViewWorker {
             maps::scans_t msgScans;
             LcmTranslator::toLcm(curBundle, msgScans,
                                  mRequest.quantization_max, true, true);
-            msgScans.utime = drc::Clock::instance()->getCurrentTime();
+            msgScans.utime = maps::Clock::instance()->getCurrentTime();
             if (allScans.size() > 0) {
               msgScans.utime = allScans.back()->getTimestamp();
             }
@@ -466,8 +466,8 @@ public:
       std::cout << "Couldn't get BotParam; trying again..." << std::endl;
       mBotWrapper->set(mBotWrapper->getLcm());
     }
-    drc::Clock::instance()->setLcm(mBotWrapper->getLcm());
-    drc::Clock::instance()->setVerbose(false);
+    maps::Clock::instance()->setLcm(mBotWrapper->getLcm());
+    maps::Clock::instance()->setVerbose(false);
     mCollector.reset(new Collector());
     mCollector->setBotWrapper(mBotWrapper);
     mStereoHandlerHead.reset(new StereoHandler(mBotWrapper, "CAMERA"));
@@ -579,7 +579,7 @@ public:
   void sendCatalog() {
     std::cout << "sending catalog" << std::endl;
     maps::catalog_t catalog;
-    catalog.utime = drc::Clock::instance()->getCurrentTime();
+    catalog.utime = maps::Clock::instance()->getCurrentTime();
     auto manager = mCollector->getMapManager();
     std::vector<int64_t> mapIds = manager->getAllMapIds();
     catalog.map_params.reserve(mapIds.size());
@@ -717,7 +717,7 @@ int main(const int iArgc, const char** iArgv) {
 
   // start publishing data (scan bundles)
   maps::request_t request;
-  request.utime = drc::Clock::instance()->getCurrentTime();
+  request.utime = maps::Clock::instance()->getCurrentTime();
   request.map_id = 2;
   request.view_id = maps::data_request_t::SCANS_HALF_SWEEP;
   request.type = maps::request_t::SCAN_BUNDLE;

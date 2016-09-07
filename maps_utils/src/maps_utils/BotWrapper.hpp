@@ -1,5 +1,5 @@
-#ifndef _drc_BotWrapper_hpp_
-#define _drc_BotWrapper_hpp_
+#ifndef _maps_BotWrapper_hpp_
+#define _maps_BotWrapper_hpp_
 
 #include <memory>
 #include <vector>
@@ -14,7 +14,7 @@ typedef struct _BotParam BotParam;
 typedef struct _BotFrames BotFrames;
 typedef struct _lcm_t lcm_t;
 
-namespace drc {
+namespace maps {
 
 class BotWrapper {
 public:
