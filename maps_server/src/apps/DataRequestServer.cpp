@@ -261,9 +261,10 @@ struct Worker {
     const Eigen::Vector3f minPt(-5, -20, -3);
     const Eigen::Vector3f maxPt(30, 20, 0.3);
     maps::request_t msg =
-      prepareHeightRequestMessage(minPt, maxPt, 0.1, 0.1);
+      prepareHeightRequestMessage(minPt, maxPt, 0.2, 0.2);
     msg.view_id = maps::data_request_t::HEIGHT_MAP_DENSE;
-    msg.time_min = -20*1e6;
+    msg.time_min = -5*1e6;
+    msg.accum_type = maps::request_t::ROBUST_BLEND;
     mLcm->publish("MAP_REQUEST", &msg);
   }
 
