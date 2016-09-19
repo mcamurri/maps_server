@@ -350,6 +350,27 @@ getAsPointCloud() const {
   return cloud;
 }
 
+maps::PointCloud::Ptr DepthImage::
+getAsPointCloudOrganized() const {
+  maps::PointCloud::Ptr cloud(new maps::PointCloud());
+  cloud->reserve(mHelper->mWidth * mHelper->mHeight);
+  //float invalidValue = getInvalidValue(TypeDisparity);
+  for (int i = 0, idx = 0; i < mHelper->mHeight; ++i) {
+    for (int j = 0; j < mHelper->mWidth; ++j, ++idx) {
+      float z = mHelper->mData[idx];
+      //if (z == invalidValue) continue;
+      Eigen::Vector3f pt(j,i,z);
+      pt = unproject(pt, TypeDisparity);
+      maps::PointCloud::PointType p;
+      p.getVector3fMap() = pt;
+      cloud->push_back(p);
+    }
+  }
+  cloud->width = mHelper->mWidth;
+  cloud->height = mHelper->mHeight;
+  return cloud;
+}
+
 pcl::RangeImage::Ptr DepthImage::
 getAsRangeImage() const {
   const std::vector<float> depths = getData(TypeDepth);

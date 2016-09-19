@@ -86,6 +86,33 @@ getAsPointCloud(const bool iTransform) const {
   return cloud;
 }
 
+maps::PointCloud::Ptr DepthImageView::
+getAsPointCloudOrganized(const bool iTransform) const {
+  maps::PointCloud::Ptr cloud(new maps::PointCloud());
+  if (iTransform) {
+    cloud = mImage->getAsPointCloudOrganized();
+  }
+  else {
+    DepthImage::Type depthType = DepthImage::TypeDisparity;
+    cloud->reserve(mImage->getWidth()*mImage->getHeight());
+    cloud->is_dense = false;
+    const std::vector<float>& depths = getInnerData(depthType);
+    //const float invalidValue = mImage->getInvalidValue(depthType);
+    for (int i = 0, idx = 0; i < mImage->getHeight(); ++i) {
+      for (int j = 0; j < mImage->getWidth(); ++j, ++idx) {
+        float z = depths[idx];
+        //if (z == invalidValue) continue;
+        maps::PointCloud::PointType pt;
+        pt.x = j;
+        pt.y = i;
+        pt.z = z;
+        cloud->push_back(pt);
+      }
+    }
+  }
+  return cloud;
+}
+
 maps::TriangleMesh::Ptr DepthImageView::
 getAsMesh(const bool iTransform) const {
   int width(mImage->getWidth()), height(mImage->getHeight());

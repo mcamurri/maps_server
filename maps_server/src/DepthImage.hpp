@@ -63,6 +63,7 @@ public:
   void create(const maps::PointCloud::Ptr& iCloud);
 
   maps::PointCloud::Ptr getAsPointCloud() const;
+  maps::PointCloud::Ptr getAsPointCloudOrganized() const;
   boost::shared_ptr<pcl::RangeImage> getAsRangeImage() const;
   Eigen::Vector3f project(const Eigen::Vector3f& iPoint,
                           const Type iType) const;
