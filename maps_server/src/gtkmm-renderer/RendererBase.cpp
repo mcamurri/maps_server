@@ -4,7 +4,7 @@
 #include <bot_param/param_util.h>
 #include <bot_frames/bot_frames.h>
 #include <lcm/lcm-cpp.hpp>
-#include <drc_utils/Clock.hpp>
+#include <maps_utils/Clock.hpp>
 
 #include <gtkmm.h>
 #include <list>
@@ -278,7 +278,7 @@ RendererBase(const std::string& iName,
   mHelper->mBotRenderer.widget = gtk_alignment_new(0, 0.5, 1.0, 0);
 
   // other initializations
-  drc::Clock::instance()->setLcm(mHelper->mLcm);
+  maps::Clock::instance()->setLcm(mHelper->mLcm);
   Gtk::Main::init_gtkmm_internals();
   
   // assign event handlers
@@ -385,7 +385,7 @@ getGtkWidget(const std::string& iName) const {
 
 int64_t RendererBase::
 now() const {
-  return drc::Clock::instance()->getCurrentTime();
+  return maps::Clock::instance()->getCurrentTime();
 }
 
 void RendererBase::

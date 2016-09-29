@@ -4,7 +4,7 @@
 
 #include <bot_vis/viewer.h>
 
-#include <drc_utils/Clock.hpp>
+#include <maps_utils/Clock.hpp>
 
 using namespace maps;
 
@@ -15,8 +15,8 @@ MapsRenderer(BotViewer* iViewer, const int iPriority,
   : gtkmm::RendererBase("Maps", iViewer, iPriority, iLcm, iParam, iFrames) {
 
   // set up robot time clock
-  drc::Clock::instance()->setLcm(getLcm());
-  drc::Clock::instance()->setVerbose(false);
+  maps::Clock::instance()->setLcm(getLcm());
+  maps::Clock::instance()->setVerbose(false);
 
   // create and show ui widgets
   setupWidgets();
