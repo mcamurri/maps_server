@@ -3,11 +3,11 @@
 #include "MapsRenderer.hpp"
 #include "MeshRenderer.hpp"
 
-#include <lcmtypes/drc/data_request_t.hpp>
-#include <lcmtypes/drc/map_snapshot_request_t.hpp>
+#include <lcmtypes/maps/data_request_t.hpp>
+#include <lcmtypes/maps/snapshot_request_t.hpp>
 #include <gtkmm-renderer/RendererBase.hpp>
 
-#include <drc_utils/Clock.hpp>
+#include <maps_utils/Clock.hpp>
 
 #include <maps/ViewBase.hpp>
 #include <maps/ViewClient.hpp>
@@ -16,7 +16,7 @@
 using namespace maps;
 
 namespace {
-  using namespace drc;
+  //using namespace drc;
 
   struct Attributes {
     std::string mLabel;
@@ -320,11 +320,11 @@ struct ViewMetaData::Helper {
   }
 
   void onSaveButton() {
-    drc::map_snapshot_request_t msg;
-    msg.utime = drc::Clock::instance()->getCurrentTime();
+    maps::snapshot_request_t msg;
+    msg.utime = maps::Clock::instance()->getCurrentTime();
     msg.view_id = mViewId;
     msg.new_view_id = mViewId + 10000;
-    msg.command = drc::map_snapshot_request_t::STORE;
+    msg.command = maps::snapshot_request_t::STORE;
     mRenderer->getLcm()->publish("MAP_SNAPSHOT_REQUEST", &msg);
   }
 

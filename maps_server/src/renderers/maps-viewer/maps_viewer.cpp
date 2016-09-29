@@ -13,11 +13,23 @@
 #include <bot_frames/bot_frames_renderers.h>
 #include <maps-renderer/maps_renderer.hpp>
 
+
+// other renderers
+/*
+#include <laser_utils/renderer_laser.h>
+#include <bot_lcmgl_render/lcmgl_bot_renderer.h>
+#include <visualization/collections_renderer.hpp>
+#include <octomap_utils/renderer_octomap.h>
+#include <mav_state_est/mav_state_est_renderers.h>
+#include <occ_map/occ_map_renderers.h>
+#include <renderer_rs/renderer_rs.hpp>
+*/
+
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-  string config_file = "drc_robot.cfg";
+  string config_file = "husky/robot.cfg";
   bool use_param_server = false;
 
   ConciseArgs parser(argc, argv);
@@ -60,6 +72,20 @@ int main(int argc, char *argv[])
   bot_viewer_add_stock_renderer(viewer, BOT_VIEWER_STOCK_RENDERER_GRID, 1);
   maps_renderer_setup(viewer, 0, lcm, bot_param, bot_frames);
   bot_frames_add_renderer_to_viewer(viewer, 1, bot_frames );
+
+  // Additional Renderers:
+  /*
+  collections_add_renderer_to_viewer(viewer, 1, lcm);
+  bot_lcmgl_add_renderer_to_viewer(viewer,lcm, 1);
+  laser_util_add_renderer_to_viewer(viewer, 1, lcm, bot_param, bot_frames);
+
+  add_octomap_renderer_to_viewer(viewer, 1, lcm);
+  add_map_measurement_renderer_to_viewer(viewer, 1, lcm, bot_param, bot_frames);
+  add_mav_state_est_renderer_to_viewer(viewer, 1, lcm, bot_param, bot_frames);
+
+  rs_add_renderer_to_viewer(viewer, 0, lcm);
+  */
+
 
   //load the renderer params from the config file.
   char *fname = g_build_filename(g_get_user_config_dir(), ".bot-plugin-viewerrc", NULL);
