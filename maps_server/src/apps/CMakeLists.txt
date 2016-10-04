@@ -3,7 +3,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++0x -Wno-deprecated-declaratio
 add_subdirectory(server)
 
 add_executable(data-request-server DataRequestServer.cpp RobotState.cpp)
-pods_use_pkg_config_packages(data-request-server maps-utils  maps) # affordance
+target_link_libraries(data-request-server pthread)
+pods_use_pkg_config_packages(data-request-server maps-utils maps) # affordance
 pods_install_executables(data-request-server)
 
 add_executable(maps-test TestMain.cpp)
@@ -19,6 +20,7 @@ pods_use_pkg_config_packages(maps-snapshot-server maps)
 pods_install_executables(maps-snapshot-server)
 
 add_executable(maps-registrar PointCloudRegistrar.cpp)
+target_link_libraries(maps-registrar pthread)
 pods_use_pkg_config_packages(maps-registrar maps bot2-lcmgl-client)
 pods_install_executables(maps-registrar)
 
