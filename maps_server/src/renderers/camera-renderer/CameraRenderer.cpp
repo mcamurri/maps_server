@@ -568,7 +568,7 @@ public:
     container->pack_start(*mViewTargetTable,false,false);
 
     CameraState::Ptr cam;
-    cam.reset(new CameraState("CAMERA", "head", this, true));
+    cam.reset(new CameraState("MULTISENSE_CAMERA", "head", this, true));
     cam->mPlacement = ImagePlacementTopCenter;
     cam->mNativeImage = true;
     mCameraStates.push_back(cam);

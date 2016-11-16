@@ -27,7 +27,7 @@ MapsRenderer(BotViewer* iViewer, const int iPriority,
   mMeshRenderer->setBotObjects(getLcm(), getBotParam(), getBotFrames());
   mMeshRenderer->addCameraChannel("CAMERACHEST_LEFT");
   mMeshRenderer->addCameraChannel("CAMERACHEST_RIGHT");
-  mMeshRenderer->addCameraChannel("CAMERA",true);
+  mMeshRenderer->addCameraChannel("MULTISENSE_CAMERA",true);
   //mMeshRenderer->setActiveCameraChannel("CAMERA_LEFT");
   mViewClient.setBotWrapper(mBotWrapper);
   mViewClient.addListener(this);
