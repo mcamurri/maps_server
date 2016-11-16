@@ -347,7 +347,7 @@ int main() {
   state.mActiveMapId = state.mCollector->getMapManager()->createMap(mapSpec);
 
   // start running wrapper
-  std::string laserChannel("SCAN");
+  std::string laserChannel("MULTISENSE_SCAN");
   state.mCollector->getDataReceiver()->
     addChannel(laserChannel,
                SensorDataReceiver::SensorTypePlanarLidar,

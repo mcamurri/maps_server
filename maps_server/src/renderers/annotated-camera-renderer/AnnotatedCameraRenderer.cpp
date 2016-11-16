@@ -478,7 +478,7 @@ public:
     Gtk::Notebook* notebook = Gtk::manage(new Gtk::Notebook());
 
     Gtk::VBox* page = Gtk::manage(new Gtk::VBox());
-    addCameraWidget("CAMERA", page);
+    addCameraWidget("MULTISENSE_CAMERA", page);
     addCameraWidget("CAMERA_LHAND", page);
     addCameraWidget("CAMERA_RHAND", page);
     notebook->append_page(*page, "Cameras");

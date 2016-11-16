@@ -166,7 +166,7 @@ struct Worker {
 
   void sendOctreeWorkspaceRequest() {
     maps::request_t msg = prepareRequestMessage();
-    msg.map_id = 1; // 1 means use SCAN_FREE | 2 or 3 means use SCAN
+    msg.map_id = 1; // 1 means use MULTISENSE_SCAN_FREE | 2 or 3 means use MULTISENSE_SCAN
     msg.view_id = maps::data_request_t::OCTREE_WORKSPACE;
     msg.resolution = 0.01;
     // Mode recently changed to time history
@@ -325,7 +325,7 @@ struct Worker {
 
   void sendDepthMapWorkspaceRequest() {
     maps::request_t msg = prepareRequestMessage();
-    msg.map_id = 1; // 2 or 3 means use SCAN | 1 means use SCAN_FREE
+    msg.map_id = 1; // 2 or 3 means use MULTISENSE_SCAN | 1 means use MULTISENSE_SCAN_FREE
     msg.view_id = maps::data_request_t::DEPTH_MAP_WORKSPACE_C;
     msg.resolution = 0.01;
     msg.width = msg.height = 200;

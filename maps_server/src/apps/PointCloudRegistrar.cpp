@@ -54,7 +54,7 @@ struct State : public maps::Collector::DataListener {
     mBotWrapper.reset(new maps::BotWrapper(mLcm));
     mCollector.reset(new maps::Collector());
     mCollector->setBotWrapper(mBotWrapper);
-    mLaserChannel = "SCAN_FREE";
+    mLaserChannel = "MULTISENSE_SCAN_FREE";
     mUpdateChannel = "MAP_LOCAL_CORRECTION";
     mActiveMapId = 1;
     mTimeMin = mTimeMax = 0;

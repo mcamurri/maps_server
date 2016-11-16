@@ -470,7 +470,7 @@ public:
     maps::Clock::instance()->setVerbose(false);
     mCollector.reset(new Collector());
     mCollector->setBotWrapper(mBotWrapper);
-    mStereoHandlerHead.reset(new StereoHandler(mBotWrapper, "CAMERA"));
+    mStereoHandlerHead.reset(new StereoHandler(mBotWrapper, "MULTISENSE_CAMERA"));
     if (!mStereoHandlerHead->isGood()) mStereoHandlerHead.reset();
     mFusedDepthHandler.reset(new FusedDepthHandler(mBotWrapper));
     // TODO: can we avoid hard-coding these?
@@ -631,7 +631,7 @@ int main(const int iArgc, const char** iArgv) {
   auto lcm = state.mBotWrapper->getLcm();
 
   // parse arguments
-  string laserChannel = "SCAN_FREE";
+  string laserChannel = "MULTISENSE_SCAN_FREE";
   float publishPeriod = 0;
   float defaultResolution = 0.1;
   bool latestSwath = false;
@@ -664,7 +664,7 @@ int main(const int iArgc, const char** iArgv) {
     state.mCollector->bind(rawChannel, 3);
   }
 
-  // add unfiltered map (SCAN_FREE)
+  // add unfiltered map (MULTISENSE_SCAN_FREE)
   LocalMap::Spec mapSpec;
   mapSpec.mId = 1;
   mapSpec.mPointBufferSize = 5000;
@@ -672,7 +672,7 @@ int main(const int iArgc, const char** iArgv) {
   mapSpec.mResolution = defaultResolution;
   state.mCollector->getMapManager()->createMap(mapSpec);
 
-  // add angle-filtered map (SCAN)
+  // add angle-filtered map (MULTISENSE_SCAN)
   mapSpec.mId = 2;
   state.mCollector->getMapManager()->createMap(mapSpec);
   auto localMap = state.mCollector->getMapManager()->getMap(mapSpec.mId);
