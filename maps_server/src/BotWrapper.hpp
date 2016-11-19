@@ -2,6 +2,7 @@
 #define _maps_BotWrapper_hpp_
 
 #include <memory>
+#include <vector>
 #include <Eigen/Geometry>
 
 namespace lcm {

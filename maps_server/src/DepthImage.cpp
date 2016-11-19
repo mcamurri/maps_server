@@ -3,6 +3,7 @@
 #include <pcl/range_image/range_image_planar.h>
 
 #include "Utils.hpp"
+#include <numeric>
 
 namespace pcl {
 class RangeImageProjective : public RangeImagePlanar {
