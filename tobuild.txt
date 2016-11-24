@@ -3,3 +3,4 @@
 maps_lcmtypes
 maps_utils
 maps_server
+plane-seg
