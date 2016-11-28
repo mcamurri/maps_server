@@ -25,6 +25,7 @@ struct data_request_t {
   const int8_t HEIGHT_MAP_CORRIDOR     = 32;
   const int8_t HEIGHT_MAP_COARSE       = 33;
   const int8_t HEIGHT_MAP_DENSE        = 34;
+  const int8_t HEIGHT_MAP_SCENE_LONG   = 35;
   const int8_t DEPTH_MAP_SCENE         = 41;
   const int8_t DEPTH_MAP_WORKSPACE     = 42;
   const int8_t DEPTH_MAP_WORKSPACE_C   = 43;

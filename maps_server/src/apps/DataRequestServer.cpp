@@ -87,6 +87,8 @@ struct Worker {
         sendHeightMapCoarseRequest(); break;
       case maps::data_request_t::HEIGHT_MAP_DENSE:
         sendHeightMapDenseRequest(); break;
+      case maps::data_request_t::HEIGHT_MAP_SCENE_LONG:
+        sendHeightMapSceneLongRequest(); break;
       case maps::data_request_t::DEPTH_MAP_SCENE:
         sendDepthMapSceneRequest(); break;
       case maps::data_request_t::DEPTH_MAP_WORKSPACE_C:
@@ -234,6 +236,36 @@ struct Worker {
     msg.time_min = -5;
     msg.time_max = 185;
     msg.time_mode = maps::request_t::ROLL_ANGLE_ABSOLUTE;
+    mLcm->publish("MAP_REQUEST", &msg);
+  }
+
+  void sendHeightMapSceneLongRequest() {
+    // As above, except with a longer time window, for quad robots
+    const Eigen::Vector3f minPt(-1, -2, -3);
+    const Eigen::Vector3f maxPt(5, 2, 0.3);
+    maps::request_t msg =
+      prepareHeightRequestMessage(minPt, maxPt, 0.03, 0.03);
+    Eigen::Isometry3f pelvisPose;
+    bool isProne = true;
+    if (mBotWrapper->getTransform("body","local",pelvisPose)) {
+      float zPelvis = pelvisPose(2,2);
+      zPelvis = std::min(std::max(-1.0f,zPelvis),1.0f);  // clamp to [-1,1]
+      const float kPi = acos(-1);
+      const float angleThresh = 45;
+      isProne = (acos(zPelvis) > angleThresh*kPi/180);
+    }
+    if (isProne) {
+      msg.clip_planes[5][3] = 0;
+    }
+    else {
+      Eigen::Vector4f plane(0.1, 0, -1, -0.4);
+      plane /= plane.head<3>().norm();
+      for (int k = 0; k < 4; ++k) msg.clip_planes[5][k] = plane[k];
+    }
+    msg.view_id = maps::data_request_t::HEIGHT_MAP_SCENE;
+    msg.time_min = -10*1e6;
+    msg.time_max = 0;
+    msg.time_mode = maps::request_t::RELATIVE;
     mLcm->publish("MAP_REQUEST", &msg);
   }
 
