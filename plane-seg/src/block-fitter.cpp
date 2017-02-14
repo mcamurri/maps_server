@@ -12,8 +12,8 @@
 #include <bot_lcmgl_client/lcmgl.h>
 
 #include <lcmtypes/maps/scans_t.hpp>
-#include <lcmtypes/drc/affordance_collection_t.hpp>
-#include <lcmtypes/drc/block_fit_request_t.hpp>
+#include <lcmtypes/bot_core/system_status_t.hpp>
+#include <lcmtypes/maps/block_fit_request_t.hpp>
 
 #include <maps/ScanBundleView.hpp>
 #include <maps/LcmTranslator.hpp>
@@ -258,10 +258,14 @@ struct State {
       json += "}\n";
 
       // publish result
-      drc::affordance_collection_t msg;
+      // This used the drc::affordance_collection_t message
+      // until Feb 2017, changed to remove drc_lcmtypes dependency
+      bot_core::system_status_t msg;
       msg.utime = data.utime;
-      msg.name = json;
-      msg.naffs = 0;
+      msg.system = 5;
+      msg.importance = 0;
+      msg.frequency = 0;
+      msg.value = json;
       mLcmWrapper->get()->publish("AFFORDANCE_COLLECTION_COMMAND", &msg);
       std::cout << "Published affordance collection" << std::endl;
 
@@ -320,7 +324,7 @@ struct State {
   }
 
   void onTrigger(const lcm::ReceiveBuffer* iBuf, const std::string& iChannel,
-                 const drc::block_fit_request_t* iMessage) {
+                 const maps::block_fit_request_t* iMessage) {
     mNamePrefix = iMessage->name_prefix;
     mBlockSize << iMessage->dimensions[0], iMessage->dimensions[1],
       iMessage->dimensions[2];
