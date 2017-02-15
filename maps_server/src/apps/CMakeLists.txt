@@ -1,7 +1,5 @@
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++0x -Wno-deprecated-declarations -Wno-attributes -Wreturn-type -Wuninitialized -Wunused-variable")
 
-add_subdirectory(server)
-
 add_executable(data-request-server DataRequestServer.cpp RobotState.cpp)
 target_link_libraries(data-request-server pthread)
 pods_use_pkg_config_packages(data-request-server maps-utils maps) # affordance
