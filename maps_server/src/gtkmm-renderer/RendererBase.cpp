@@ -316,8 +316,8 @@ RendererBase(const std::string& iName,
                     G_CALLBACK(InternalHelper::savePreferences), this);
 
   // finally, register this renderer with the bot viewer
-  bot_viewer_add_renderer_on_side(iViewer, &mHelper->mBotRenderer,
-                                  iPriority, iWhichSide);
+  bot_viewer_add_renderer(iViewer, &mHelper->mBotRenderer,
+                                  iPriority);
 }
 
 RendererBase::
