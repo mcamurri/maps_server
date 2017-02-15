@@ -1,7 +1,7 @@
 #include "FillMethods.hpp"
 
-#include <mini-maps/DepthImageView.hpp>
-#include <mini-maps/DepthImage.hpp>
+#include <maps-mini/DepthImageView.hpp>
+#include <maps-mini/DepthImage.hpp>
 
 using namespace terrainmap;
 

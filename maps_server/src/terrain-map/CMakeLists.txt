@@ -17,7 +17,7 @@ pods_install_headers(
 pods_install_libraries(${LIB_NAME})
 
 set(REQUIRED_PACKAGES
-  mini-maps
+  maps-mini
 )
 pods_use_pkg_config_packages(${LIB_NAME} ${REQUIRED_PACKAGES})
 

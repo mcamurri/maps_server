@@ -1,4 +1,4 @@
-set(LIB_NAME "mini-maps")
+set(LIB_NAME "maps-mini")
 
 # Create a shared library
 add_library(${LIB_NAME} SHARED
@@ -44,6 +44,6 @@ pods_install_pkg_config_file(${LIB_NAME}
     VERSION 0.0.1)
 
 
-add_executable(mini-maps-test TestMain.cpp)
-pods_use_pkg_config_packages(mini-maps-test mini-maps)
-pods_install_executables(mini-maps-test)
+add_executable(maps-mini-test TestMain.cpp)
+pods_use_pkg_config_packages(maps-mini-test maps-mini)
+pods_install_executables(maps-mini-test)
