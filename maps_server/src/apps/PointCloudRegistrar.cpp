@@ -10,7 +10,8 @@
 
 #include <bot_lcmgl_client/lcmgl.h>
 
-#include <maps/BotWrapper.hpp>
+#include <maps_bot_wrapper/BotWrapper.hpp>
+
 #include <maps/Collector.hpp>
 #include <maps/Utils.hpp>
 #include <maps/MapManager.hpp>

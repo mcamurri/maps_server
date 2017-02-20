@@ -22,14 +22,15 @@
 #include <maps/LocalMap.hpp>
 #include <maps/SensorDataReceiver.hpp>
 #include <maps/DataBlob.hpp>
-#include <maps/LcmTranslator.hpp>
-#include <maps/BotWrapper.hpp>
 #include <maps/Utils.hpp>
 #include <maps/Collector.hpp>
 #include <maps/PointDataBuffer.hpp>
+#include <maps_bot_wrapper/BotWrapper.hpp>
 
 #include <maps_utils/PointerUtils.hpp>
 #include <maps_utils/Clock.hpp>
+#include <maps_lcm/LcmTranslator.hpp>
+
 #include <ConciseArgs>
 
 #include <bot_core/timestamp.h>

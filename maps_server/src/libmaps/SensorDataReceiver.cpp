@@ -8,10 +8,11 @@
 
 #include <lcmtypes/bot_core/planar_lidar_t.hpp>
 
+#include <maps_bot_wrapper/BotWrapper.hpp>
 #include "Types.hpp"
 #include "LidarScan.hpp"
 #include "ThreadSafeQueue.hpp"
-#include "BotWrapper.hpp"
+
 
 #include <pcl/io/io.h>
 #include <bot_param/param_util.h>

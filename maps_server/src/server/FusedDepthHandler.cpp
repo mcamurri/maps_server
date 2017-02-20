@@ -2,7 +2,7 @@
 
 #include <maps/DepthImage.hpp>
 #include <maps/DepthImageView.hpp>
-#include <maps/BotWrapper.hpp>
+#include <maps_bot_wrapper/BotWrapper.hpp>
 
 #include <bot_core/camtrans.h>
 #include <bot_param/param_util.h>

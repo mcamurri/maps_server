@@ -5,7 +5,6 @@ add_library(maps SHARED
   PointDataBuffer.cpp
   VoxelGrid.cpp
   DepthImage.cpp
-  BotWrapper.cpp
   LidarScan.cpp
   SensorDataReceiver.cpp
   ViewBase.cpp
@@ -16,11 +15,7 @@ add_library(maps SHARED
   ScanBundleView.cpp
   LocalMap.cpp
   MapManager.cpp
-  LcmTranslator.cpp
-  ViewClient.cpp
   Collector.cpp
-#  Surfelizer.cpp
-#  ViewServer.cpp
 )
 
 # make the header public
@@ -35,7 +30,6 @@ pods_install_headers(
   PointDataBuffer.hpp
   VoxelGrid.hpp
   DepthImage.hpp
-  BotWrapper.hpp
   LidarScan.hpp
   SensorDataReceiver.hpp
   ViewBase.hpp
@@ -46,11 +40,7 @@ pods_install_headers(
   ScanBundleView.hpp
   LocalMap.hpp
   MapManager.hpp
-  LcmTranslator.hpp
-  ViewClient.hpp
   Collector.hpp
-#  Surfelizer.hpp
-#  ViewServer.hpp
   DESTINATION maps
 )
 
@@ -70,6 +60,7 @@ set(REQUIRED_PACKAGES
   lcm
   zlib
   maps-utils
+  maps-bot-wrapper
 )
 pods_use_pkg_config_packages(maps ${REQUIRED_PACKAGES})
 

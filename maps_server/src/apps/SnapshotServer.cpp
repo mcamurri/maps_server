@@ -10,13 +10,15 @@
 #include <lcmtypes/maps/octree_t.hpp>
 #include <lcmtypes/maps/image_t.hpp>
 
-#include <maps/BotWrapper.hpp>
+#include <maps_bot_wrapper/BotWrapper.hpp>
+
 #include <maps/ViewBase.hpp>
-#include <maps/ViewClient.hpp>
-#include <maps/LcmTranslator.hpp>
 #include <maps/PointCloudView.hpp>
 #include <maps/OctreeView.hpp>
 #include <maps/DepthImageView.hpp>
+
+#include <maps_lcm/ViewClient.hpp>
+#include <maps_lcm/LcmTranslator.hpp>
 
 struct ViewData {
   int64_t mViewId;

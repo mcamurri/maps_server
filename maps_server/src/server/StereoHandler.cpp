@@ -1,9 +1,9 @@
 #include "StereoHandler.hpp"
 
-#include <maps/BotWrapper.hpp>
 #include <maps/DepthImage.hpp>
 #include <maps/DepthImageView.hpp>
 #include <maps/Utils.hpp>
+#include <maps_bot_wrapper/BotWrapper.hpp>
 
 #include <lcm/lcm-cpp.hpp>
 #include <lcmtypes/bot_core/images_t.hpp>

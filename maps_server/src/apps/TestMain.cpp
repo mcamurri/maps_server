@@ -14,13 +14,14 @@
 #include <maps/Collector.hpp>
 #include <maps/PointCloudView.hpp>
 #include <maps/DepthImageView.hpp>
-#include <maps/LcmTranslator.hpp>
 #include <maps/Utils.hpp>
-#include <maps/BotWrapper.hpp>
 #include <maps/DepthImage.hpp>
 #include <maps/ObjectPool.hpp>
 
-#include <maps/ViewClient.hpp>
+#include <maps_bot_wrapper/BotWrapper.hpp>
+#include <maps_lcm/LcmTranslator.hpp>
+#include <maps_lcm/ViewClient.hpp>
+
 #include <bot_param/param_client.h>
 
 // TODO TEMP

@@ -5,16 +5,18 @@
 #include <lcmtypes/maps/image_t.hpp>
 #include <lcmtypes/maps/cloud_t.hpp>
 
+#include <maps_bot_wrapper/BotWrapper.hpp>
+
 #include <maps/SensorDataReceiver.hpp>
 #include <maps/MapManager.hpp>
 #include <maps/LocalMap.hpp>
 #include <maps/Collector.hpp>
 #include <maps/PointCloudView.hpp>
 #include <maps/DepthImageView.hpp>
-#include <maps/LcmTranslator.hpp>
 #include <maps/Utils.hpp>
-#include <maps/BotWrapper.hpp>
 #include <maps/DepthImage.hpp>
+
+#include <maps_lcm/LcmTranslator.hpp>
 
 using namespace maps;
 using namespace std;
