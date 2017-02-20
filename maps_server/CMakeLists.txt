@@ -13,9 +13,9 @@ add_subdirectory(src/maps_utils)
 add_subdirectory(src/libmaps)
 
 # library: minimal version of the above
-#add_subdirectory(src/libmaps-mini)
+add_subdirectory(src/libmaps-mini)
 # library: used for filling in cell in height maps
-#add_subdirectory(src/terrain-map)
+add_subdirectory(src/terrain-map)
 
 
 add_subdirectory(src/maps_lcm)
@@ -29,4 +29,4 @@ add_subdirectory(src/apps)
 add_subdirectory(src/utils)
 
 # Maps GTK renderer works as of Feb 2017
-#add_subdirectory(src/renderers)
+# add_subdirectory(src/renderers)

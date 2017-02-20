@@ -11,8 +11,8 @@
 //#include <lcmtypes/drc/world_box_t.hpp>
 
 #include <gtkmm-renderer/RendererBase.hpp>
-#include <maps/ViewClient.hpp>
-#include <maps/BotWrapper.hpp>
+#include <maps_lcm/ViewClient.hpp>
+#include <maps_bot_wrapper/BotWrapper.hpp>
 
 #include "InteractiveBox.hpp"
 #include "ViewMetaData.hpp"

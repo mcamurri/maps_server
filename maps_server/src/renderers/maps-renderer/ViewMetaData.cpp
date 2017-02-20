@@ -10,7 +10,7 @@
 #include <maps_utils/Clock.hpp>
 
 #include <maps/ViewBase.hpp>
-#include <maps/ViewClient.hpp>
+#include <maps_lcm/ViewClient.hpp>
 #include <maps/Utils.hpp>
 
 using namespace maps;

@@ -28,6 +28,7 @@ pods_install_headers(
 pods_install_libraries(${LIB_NAME})
 
 set(REQUIRED_PACKAGES
+  maps-bot-wrapper
   maps-utils
   zlib
 )

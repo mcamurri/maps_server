@@ -14,7 +14,7 @@
 #include <lcmtypes/bot_core/image_t.hpp>
 #include <lcmtypes/bot_core/images_t.hpp>
 
-#include <maps/BotWrapper.hpp>
+#include <maps_bot_wrapper/BotWrapper.hpp>
 
 #define GL_GLEXT_PROTOTYPES
 #include <GL/gl.h>
