@@ -9,14 +9,14 @@
 
 #include <bot_lcmgl_client/lcmgl.h>
 
-#include <maps_lcm_utils/LcmWrapper.hpp>
-#include <maps_lcm_utils/BotWrapper.hpp>
-
 #include <maps/Collector.hpp>
 #include <maps/Utils.hpp>
 #include <maps/MapManager.hpp>
 #include <maps/LocalMap.hpp>
 #include <maps/PointCloudView.hpp>
+
+#include <maps_lcm/LcmWrapper.hpp>
+#include <maps_lcm/BotWrapper.hpp>
 #include <maps_lcm/LcmSensorDataReceiver.hpp>
 
 #include <lcmtypes/bot_core/rigid_transform_t.hpp>

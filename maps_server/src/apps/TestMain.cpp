@@ -22,9 +22,8 @@
 #include <maps_lcm/LcmTranslator.hpp>
 #include <maps_lcm/ViewClient.hpp>
 #include <maps_lcm/LcmSensorDataReceiver.hpp>
-
-#include <maps_lcm_utils/BotWrapper.hpp>
-#include <maps_lcm_utils/Clock.hpp>
+#include <maps_lcm/BotWrapper.hpp>
+#include <maps_lcm/Clock.hpp>
 
 #include <bot_param/param_client.h>
 

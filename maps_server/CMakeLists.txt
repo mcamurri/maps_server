@@ -7,30 +7,19 @@ include(cmake/pods.cmake)
 include(cmake/lcmtypes.cmake)
 lcmtypes_build()
 
-# non-lcm tools
-#add_subdirectory(src/maps_utils)
-
 # main maps library (no application)
 add_subdirectory(src/libmaps)
-
-# some lcm tools used in lcm
-add_subdirectory(src/maps_lcm_utils)
-
-# library: minimal version of the above
-add_subdirectory(src/libmaps-mini)
-
 
 # maps library specific to lcm
 add_subdirectory(src/maps_lcm)
 
+# library: minimal version of the above
+add_subdirectory(src/libmaps-mini)
 
 # library: used for filling in cell in height maps
 add_subdirectory(src/terrain-map)
 
-
-
-
-# applications using libmaps
+# LCM applications using maps and maps_lcm
 add_subdirectory(src/server)
 add_subdirectory(src/apps)
 

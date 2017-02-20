@@ -5,8 +5,8 @@
 #include <iostream>
 
 #include <lcm/lcm-cpp.hpp>
-#include <maps_lcm_utils/LcmWrapper.hpp>
-#include <maps_lcm_utils/BotWrapper.hpp>
+#include <maps_lcm/LcmWrapper.hpp>
+#include <maps_lcm/BotWrapper.hpp>
 
 using terrainmap::TerrainMap;
 

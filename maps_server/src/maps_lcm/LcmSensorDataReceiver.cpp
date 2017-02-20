@@ -12,7 +12,7 @@
 #include <maps/LidarScan.hpp>
 #include <maps/ThreadSafeQueue.hpp>
 
-#include <maps_lcm_utils/BotWrapper.hpp>
+#include "BotWrapper.hpp"
 
 #include <pcl/io/io.h>
 #include <bot_param/param_util.h>

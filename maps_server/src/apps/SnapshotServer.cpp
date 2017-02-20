@@ -9,14 +9,13 @@
 #include <lcmtypes/maps/octree_t.hpp>
 #include <lcmtypes/maps/image_t.hpp>
 
-#include <maps_lcm_utils/LcmWrapper.hpp>
-#include <maps_lcm_utils/BotWrapper.hpp>
-
 #include <maps/ViewBase.hpp>
 #include <maps/PointCloudView.hpp>
 #include <maps/OctreeView.hpp>
 #include <maps/DepthImageView.hpp>
 
+#include <maps_lcm/LcmWrapper.hpp>
+#include <maps_lcm/BotWrapper.hpp>
 #include <maps_lcm/ViewClient.hpp>
 #include <maps_lcm/LcmTranslator.hpp>
 

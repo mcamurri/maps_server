@@ -15,8 +15,8 @@
 #include <maps/Utils.hpp>
 #include <maps/ObjectPool.hpp>
 
-#include <maps_lcm_utils/BotWrapper.hpp>
-#include <maps_lcm_utils/Clock.hpp>
+#include "BotWrapper.hpp"
+#include "Clock.hpp"
 #include "LcmTranslator.hpp"
 
 using namespace maps;

@@ -3,7 +3,7 @@
 #include <maps/DepthImage.hpp>
 #include <maps/DepthImageView.hpp>
 #include <maps/Utils.hpp>
-#include <maps_lcm_utils/BotWrapper.hpp>
+#include <maps_lcm/BotWrapper.hpp>
 
 #include <lcm/lcm-cpp.hpp>
 #include <lcmtypes/bot_core/images_t.hpp>

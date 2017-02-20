@@ -4,7 +4,7 @@
 #include <bot_param/param_client.h>
 #include <bot_frames/bot_frames.h>
 #include <lcmtypes/bot_param/set_t.hpp>
-#include <maps_lcm_utils/Clock.hpp>
+#include "Clock.hpp"
 
 using namespace maps;
 

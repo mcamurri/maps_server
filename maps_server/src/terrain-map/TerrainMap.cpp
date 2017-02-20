@@ -6,7 +6,7 @@
 #include <lcmtypes/bot_core/pose_t.hpp>
 #include <lcmtypes/maps/image_t.hpp>
 
-#include <maps_lcm_utils/BotWrapper.hpp>
+#include <maps_lcm/BotWrapper.hpp>
 
 #include <maps-mini/ViewClient.hpp>
 #include <maps-mini/DepthImage.hpp>

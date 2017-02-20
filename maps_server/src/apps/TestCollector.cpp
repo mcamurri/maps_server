@@ -16,8 +16,7 @@
 
 #include <maps_lcm/LcmTranslator.hpp>
 #include <maps_lcm/LcmSensorDataReceiver.hpp>
-
-#include <maps_lcm_utils/BotWrapper.hpp>
+#include <maps_lcm/BotWrapper.hpp>
 
 using namespace maps;
 using namespace std;

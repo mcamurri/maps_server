@@ -1,5 +1,8 @@
 # Create a shared library
 add_library(maps-lcm SHARED
+  Clock.cpp
+  LcmWrapper.cpp
+  BotWrapper.cpp
   LcmSensorDataReceiver.cpp
   LcmTranslator.cpp
   ViewClient.cpp
@@ -8,6 +11,9 @@ add_library(maps-lcm SHARED
 # make the header public
 # install it to include/maps
 pods_install_headers(
+  Clock.hpp
+  LcmWrapper.hpp
+  BotWrapper.hpp
   LcmSensorDataReceiver.hpp
   LcmTranslator.hpp
   ViewClient.hpp
@@ -39,6 +45,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -Wno-deprecated-declarations 
 # software to use.
 pods_install_pkg_config_file(maps-lcm
     CFLAGS -std=c++0x -Wno-deprecated-declarations
-    LIBS -lmaps-lcm -lmaps-lcm-utils
+    LIBS -lmaps-lcm
     REQUIRES ${REQUIRED_PACKAGES}
     VERSION 0.0.1)
