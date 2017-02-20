@@ -1,8 +1,5 @@
 #include "LidarUtils.hpp"
 
-#include <lcmtypes/bot_core/planar_lidar_t.hpp>
-#include <lcmtypes/bot_core/pose_t.hpp>
-
 using namespace maps;
 
 bool LidarUtils::

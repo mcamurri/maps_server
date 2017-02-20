@@ -4,19 +4,20 @@
 #include <mutex>
 #include <condition_variable>
 
-#include <maps_utils/LcmWrapper.hpp>
 #include <ConciseArgs>
 #include <lcm/lcm-cpp.hpp>
 
 #include <bot_lcmgl_client/lcmgl.h>
 
-#include <maps_bot_wrapper/BotWrapper.hpp>
+#include <maps_lcm_utils/LcmWrapper.hpp>
+#include <maps_lcm_utils/BotWrapper.hpp>
 
 #include <maps/Collector.hpp>
 #include <maps/Utils.hpp>
 #include <maps/MapManager.hpp>
 #include <maps/LocalMap.hpp>
 #include <maps/PointCloudView.hpp>
+#include <maps_lcm/LcmSensorDataReceiver.hpp>
 
 #include <lcmtypes/bot_core/rigid_transform_t.hpp>
 #include <lcmtypes/maps/registration_command_t.hpp>
@@ -27,6 +28,7 @@ struct State : public maps::Collector::DataListener {
   std::shared_ptr<maps::LcmWrapper> mLcmWrapper;
   std::shared_ptr<lcm::LCM> mLcm;
   std::shared_ptr<maps::BotWrapper> mBotWrapper;
+  std::shared_ptr<maps::LcmSensorDataReceiver> mDataReceiver;
   std::shared_ptr<maps::Collector> mCollector;
   std::string mLaserChannel;
   std::string mUpdateChannel;
@@ -53,8 +55,9 @@ struct State : public maps::Collector::DataListener {
     mLcmWrapper.reset(new maps::LcmWrapper());
     mLcm = mLcmWrapper->get();
     mBotWrapper.reset(new maps::BotWrapper(mLcm));
-    mCollector.reset(new maps::Collector());
-    mCollector->setBotWrapper(mBotWrapper);
+    mDataReceiver.reset(new maps::LcmSensorDataReceiver());
+    mDataReceiver->setBotWrapper(mBotWrapper);
+    mCollector.reset(new maps::Collector(mDataReceiver));
     mLaserChannel = "MULTISENSE_SCAN_FREE";
     mUpdateChannel = "MAP_LOCAL_CORRECTION";
     mActiveMapId = 1;

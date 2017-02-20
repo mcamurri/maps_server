@@ -7,7 +7,6 @@
 #include <lcmtypes/maps/image_t.hpp>
 #include <lcmtypes/maps/catalog_t.hpp>
 #include <thread>
-#include <maps_utils/Clock.hpp>
 
 #include <maps/PointCloudView.hpp>
 #include <maps/OctreeView.hpp>
@@ -16,7 +15,8 @@
 #include <maps/Utils.hpp>
 #include <maps/ObjectPool.hpp>
 
-#include <maps_bot_wrapper/BotWrapper.hpp>
+#include <maps_lcm_utils/BotWrapper.hpp>
+#include <maps_lcm_utils/Clock.hpp>
 #include "LcmTranslator.hpp"
 
 using namespace maps;

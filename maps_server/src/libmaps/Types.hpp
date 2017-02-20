@@ -6,10 +6,6 @@
 #include <pcl/point_types.h>
 #include <Eigen/Geometry>
 
-// forward declaration
-namespace lcm {
-  class LCM;
-}
 
 namespace maps {
   typedef pcl::PointXYZRGB PointType;

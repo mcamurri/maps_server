@@ -5,8 +5,6 @@
 #include <lcmtypes/maps/image_t.hpp>
 #include <lcmtypes/maps/cloud_t.hpp>
 
-#include <maps_bot_wrapper/BotWrapper.hpp>
-
 #include <maps/SensorDataReceiver.hpp>
 #include <maps/MapManager.hpp>
 #include <maps/LocalMap.hpp>
@@ -17,6 +15,9 @@
 #include <maps/DepthImage.hpp>
 
 #include <maps_lcm/LcmTranslator.hpp>
+#include <maps_lcm/LcmSensorDataReceiver.hpp>
+
+#include <maps_lcm_utils/BotWrapper.hpp>
 
 using namespace maps;
 using namespace std;
@@ -25,13 +26,15 @@ class State {
 public:
   BotWrapper::Ptr mBotWrapper;
   std::shared_ptr<Collector> mCollector;
+  std::shared_ptr<maps::LcmSensorDataReceiver> mDataReceiver;
   int mActiveMapId;
   bot_lcmgl_t* mLcmGl;
 
   State() {
     mBotWrapper.reset(new BotWrapper());
-    mCollector.reset(new Collector());
-    mCollector->setBotWrapper(mBotWrapper);
+    mDataReceiver.reset(new LcmSensorDataReceiver());
+    mDataReceiver->setBotWrapper(mBotWrapper);
+    mCollector.reset(new Collector(mDataReceiver));
     mActiveMapId = 0;
     mLcmGl = bot_lcmgl_init(mBotWrapper->getLcm()->getUnderlyingLCM(),
                             "test-collector");

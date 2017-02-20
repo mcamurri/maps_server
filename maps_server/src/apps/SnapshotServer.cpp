@@ -1,7 +1,6 @@
 #include <iostream>
 #include <unordered_map>
 
-#include <maps_utils/LcmWrapper.hpp>
 #include <ConciseArgs>
 #include <lcm/lcm-cpp.hpp>
 
@@ -10,7 +9,8 @@
 #include <lcmtypes/maps/octree_t.hpp>
 #include <lcmtypes/maps/image_t.hpp>
 
-#include <maps_bot_wrapper/BotWrapper.hpp>
+#include <maps_lcm_utils/LcmWrapper.hpp>
+#include <maps_lcm_utils/BotWrapper.hpp>
 
 #include <maps/ViewBase.hpp>
 #include <maps/PointCloudView.hpp>

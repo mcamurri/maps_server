@@ -25,11 +25,14 @@
 #include <maps/Utils.hpp>
 #include <maps/Collector.hpp>
 #include <maps/PointDataBuffer.hpp>
-#include <maps_bot_wrapper/BotWrapper.hpp>
 
 #include <maps_utils/PointerUtils.hpp>
-#include <maps_utils/Clock.hpp>
+
+#include <maps_lcm_utils/BotWrapper.hpp>
+#include <maps_lcm_utils/Clock.hpp>
+
 #include <maps_lcm/LcmTranslator.hpp>
+#include <maps_lcm/LcmSensorDataReceiver.hpp>
 
 #include <ConciseArgs>
 
@@ -448,6 +451,7 @@ typedef std::unordered_map<int64_t,ViewWorker::Ptr> ViewWorkerMap;
 class State {
 public:
   BotWrapper::Ptr mBotWrapper;
+  std::shared_ptr<LcmSensorDataReceiver> mDataReceiver;
   std::shared_ptr<Collector> mCollector;
   ViewWorkerMap mViewWorkers;
   std::shared_ptr<StereoHandler> mStereoHandlerHead;
@@ -469,8 +473,9 @@ public:
     }
     maps::Clock::instance()->setLcm(mBotWrapper->getLcm());
     maps::Clock::instance()->setVerbose(false);
-    mCollector.reset(new Collector());
-    mCollector->setBotWrapper(mBotWrapper);
+    mDataReceiver.reset(new LcmSensorDataReceiver());
+    mDataReceiver->setBotWrapper(mBotWrapper);
+    mCollector.reset(new Collector(mDataReceiver));
     mStereoHandlerHead.reset(new StereoHandler(mBotWrapper, "MULTISENSE_CAMERA"));
     if (!mStereoHandlerHead->isGood()) mStereoHandlerHead.reset();
     mFusedDepthHandler.reset(new FusedDepthHandler(mBotWrapper));

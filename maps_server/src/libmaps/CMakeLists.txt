@@ -56,11 +56,8 @@ set(REQUIRED_PACKAGES
   pcl_surface-1.7
   octomap
   glib-2.0
-  bot2-frames
-  lcm
   zlib
   maps-utils
-  maps-bot-wrapper
 )
 pods_use_pkg_config_packages(maps ${REQUIRED_PACKAGES})
 

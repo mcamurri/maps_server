@@ -11,7 +11,6 @@
 using namespace maps;
 
 struct Collector::Helper {
-  std::shared_ptr<BotWrapper> mBotWrapper;
   std::shared_ptr<SensorDataReceiver> mDataReceiver;
   std::shared_ptr<MapManager> mMapManager;
   std::thread mConsumerThread;
@@ -62,6 +61,13 @@ struct Collector::Helper {
 const double Collector::Helper::kPi = 4*atan(1);
 
 Collector::
+Collector(const std::shared_ptr<SensorDataReceiver>&  receiver) {
+  mHelper.reset(new Helper());
+  mHelper->mDataReceiver = receiver;
+  mHelper->mMapManager.reset(new MapManager());
+}
+
+Collector::
 Collector() {
   mHelper.reset(new Helper());
   mHelper->mDataReceiver.reset(new SensorDataReceiver());
@@ -73,12 +79,6 @@ Collector::
   mHelper->mDataListeners.clear();
   stop();
 }
-
-void Collector::
-setBotWrapper(const std::shared_ptr<BotWrapper>& iWrapper) {
-  mHelper->mBotWrapper = iWrapper;
-  mHelper->mDataReceiver->setBotWrapper(iWrapper);
-}  
 
 bool Collector::
 start() {

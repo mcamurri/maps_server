@@ -1,5 +1,5 @@
 #include <maps/LocalMap.hpp>
-#include <maps_bot_wrapper/BotWrapper.hpp>
+#include <maps_lcm_utils/BotWrapper.hpp>
 
 #include <lcm/lcm-cpp.hpp>
 #include <lcmtypes/maps/depth_settings_t.hpp>

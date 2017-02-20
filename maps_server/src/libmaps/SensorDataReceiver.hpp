@@ -8,7 +8,6 @@ namespace maps {
 
 struct PointSet;
 class LidarScan;
-class BotWrapper;
 
 class SensorDataReceiver {
 public:
@@ -28,21 +27,20 @@ public:
   SensorDataReceiver();
   ~SensorDataReceiver();
 
-  void setBotWrapper(const std::shared_ptr<BotWrapper>& iWrapper);
-  bool addChannel(const std::string& iSensorChannel,
+  virtual bool addChannel(const std::string& iSensorChannel,
                   const SensorType iSensorType,
                   const std::string& iTransformFrom,
                   const std::string& iTransformTo);
-  void clearChannels();
-  bool removeChannel(const std::string& iSensorChannel);
+  virtual void clearChannels();
+  virtual bool removeChannel(const std::string& iSensorChannel);
 
-  void setMaxBufferSize(const int iSize);
-  bool pop(SensorData& oData, const bool iNeedPose=true);
-  bool waitForData(SensorData& oData, const bool iNeedPose=true);
-  void unblock();
+  virtual void setMaxBufferSize(const int iSize);
+  virtual bool pop(SensorData& oData, const bool iNeedPose=true);
+  virtual bool waitForData(SensorData& oData, const bool iNeedPose=true);
+  virtual void unblock();
 
-  bool start();
-  bool stop();
+  virtual bool start();
+  virtual bool stop();
 
 protected:
   struct Helper;

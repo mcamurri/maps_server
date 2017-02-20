@@ -18,16 +18,18 @@
 #include <maps/DepthImage.hpp>
 #include <maps/ObjectPool.hpp>
 
-#include <maps_bot_wrapper/BotWrapper.hpp>
+#include <maps_utils/LidarUtils.hpp>
+
 #include <maps_lcm/LcmTranslator.hpp>
 #include <maps_lcm/ViewClient.hpp>
+#include <maps_lcm/LcmSensorDataReceiver.hpp>
+
+#include <maps_lcm_utils/BotWrapper.hpp>
+#include <maps_lcm_utils/Clock.hpp>
 
 #include <bot_param/param_client.h>
 
-// TODO TEMP
 #include <bot_core/timestamp.h>
-#include <maps_utils/Clock.hpp>
-#include <maps_utils/LidarUtils.hpp>
 
 using namespace maps;
 using namespace std;
@@ -36,13 +38,15 @@ class State {
 public:
   BotWrapper::Ptr mBotWrapper;
   std::shared_ptr<Collector> mCollector;
+  std::shared_ptr<maps::LcmSensorDataReceiver> mDataReceiver;
   int mActiveMapId;
   bot_lcmgl_t* mLcmGl;
 
   State() {
     mBotWrapper.reset(new BotWrapper());
-    mCollector.reset(new Collector());
-    mCollector->setBotWrapper(mBotWrapper);
+    mDataReceiver.reset(new LcmSensorDataReceiver());
+    mDataReceiver->setBotWrapper(mBotWrapper);
+    mCollector.reset(new Collector(mDataReceiver));
     mActiveMapId = 0;
     mLcmGl = bot_lcmgl_init(mBotWrapper->getLcm()->getUnderlyingLCM(),
                             "test-collector");

@@ -7,7 +7,7 @@
 #include <lcm/lcm_coretypes.h>
 #include <lcmtypes/maps/image_t.hpp>
 #include <lcmtypes/maps/request_t.hpp>
-#include <maps_utils/BotWrapper.hpp>
+#include <maps_lcm_utils/BotWrapper.hpp>
 
 #include "Utils.hpp"
 #include "DepthImageView.hpp"

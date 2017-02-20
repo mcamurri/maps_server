@@ -8,7 +8,6 @@ namespace maps {
 
 class SensorDataReceiver;
 class MapManager;
-class BotWrapper;
 
 class Collector {
 public:
@@ -17,10 +16,10 @@ public:
   };
 
 public:
+  Collector(const std::shared_ptr<SensorDataReceiver>&  receiver);
   Collector();
   ~Collector();
 
-  void setBotWrapper(const std::shared_ptr<BotWrapper>& iWrapper);
   bool start();
   bool stop();
 

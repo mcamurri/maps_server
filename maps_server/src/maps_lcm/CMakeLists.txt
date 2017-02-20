@@ -1,5 +1,6 @@
 # Create a shared library
-add_library(maps_lcm SHARED
+add_library(maps-lcm SHARED
+  LcmSensorDataReceiver.cpp
   LcmTranslator.cpp
   ViewClient.cpp
 )
@@ -7,13 +8,14 @@ add_library(maps_lcm SHARED
 # make the header public
 # install it to include/maps
 pods_install_headers(
+  LcmSensorDataReceiver.hpp
   LcmTranslator.hpp
   ViewClient.hpp
   DESTINATION maps_lcm
 )
 
 # make the library public
-pods_install_libraries(maps_lcm)
+pods_install_libraries(maps-lcm)
 
 set(REQUIRED_PACKAGES
   eigen3
@@ -29,14 +31,14 @@ set(REQUIRED_PACKAGES
   zlib
   maps
 )
-pods_use_pkg_config_packages(maps_lcm ${REQUIRED_PACKAGES})
+pods_use_pkg_config_packages(maps-lcm ${REQUIRED_PACKAGES})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -Wno-deprecated-declarations -Wno-attributes -Wreturn-type -Wuninitialized -Wunused-variable")
 
 # create a pkg-config file for the library, to make it easier for other
 # software to use.
-pods_install_pkg_config_file(maps_lcm
+pods_install_pkg_config_file(maps-lcm
     CFLAGS -std=c++0x -Wno-deprecated-declarations
-    LIBS -lmaps_lcm
+    LIBS -lmaps-lcm -lmaps-lcm-utils
     REQUIRES ${REQUIRED_PACKAGES}
     VERSION 0.0.1)

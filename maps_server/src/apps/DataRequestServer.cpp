@@ -12,8 +12,8 @@
 #include <lcmtypes/maps/shaper_data_request_t.hpp>
 
 #include <ConciseArgs>
-#include <maps_utils/Clock.hpp>
-#include <maps_utils/BotWrapper.hpp>
+#include <maps_lcm_utils/Clock.hpp>
+#include <maps_lcm_utils/BotWrapper.hpp>
 
 #include "RobotState.hpp"
 
