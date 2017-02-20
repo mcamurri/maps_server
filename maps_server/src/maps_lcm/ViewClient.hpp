@@ -5,7 +5,7 @@
 #include <set>
 #include <map>
 #include <memory>
-#include "ViewBase.hpp"
+#include <maps/ViewBase.hpp>
 
 namespace maps {
 

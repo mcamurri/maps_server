@@ -9,14 +9,15 @@
 #include <thread>
 #include <maps_utils/Clock.hpp>
 
-#include "PointCloudView.hpp"
-#include "OctreeView.hpp"
-#include "DepthImageView.hpp"
+#include <maps/PointCloudView.hpp>
+#include <maps/OctreeView.hpp>
+#include <maps/DepthImageView.hpp>
+#include <maps/ThreadSafeQueue.hpp>
+#include <maps/Utils.hpp>
+#include <maps/ObjectPool.hpp>
+
+#include <maps_bot_wrapper/BotWrapper.hpp>
 #include "LcmTranslator.hpp"
-#include "ThreadSafeQueue.hpp"
-#include "BotWrapper.hpp"
-#include "Utils.hpp"
-#include "ObjectPool.hpp"
 
 using namespace maps;
 

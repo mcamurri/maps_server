@@ -1,12 +1,12 @@
 #include "LcmTranslator.hpp"
 
-#include "DataBlob.hpp"
-#include "PointCloudView.hpp"
-#include "OctreeView.hpp"
-#include "DepthImageView.hpp"
-#include "DepthImage.hpp"
-#include "ScanBundleView.hpp"
-#include "Utils.hpp"
+#include <maps/DataBlob.hpp>
+#include <maps/PointCloudView.hpp>
+#include <maps/OctreeView.hpp>
+#include <maps/DepthImageView.hpp>
+#include <maps/DepthImage.hpp>
+#include <maps/ScanBundleView.hpp>
+#include <maps/Utils.hpp>
 
 #include <limits>
 #include <octomap/octomap.h>

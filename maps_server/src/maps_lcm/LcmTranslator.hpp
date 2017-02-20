@@ -12,8 +12,8 @@ namespace maps {
   class scan_t;
 }
 
-#include "LocalMap.hpp"
-#include "ViewBase.hpp"
+#include <maps/LocalMap.hpp>
+#include <maps/ViewBase.hpp>
 
 namespace maps {
 
