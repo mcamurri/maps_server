@@ -28,7 +28,7 @@ pods_install_headers(
 pods_install_libraries(${LIB_NAME})
 
 set(REQUIRED_PACKAGES
-  maps-utils
+  maps
   maps-lcm-utils
   zlib
 )

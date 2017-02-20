@@ -1,5 +1,6 @@
 # Create a shared library
 add_library(maps SHARED
+  LidarUtils.cpp
   DataBlob.cpp
   Utils.cpp
   PointDataBuffer.cpp
@@ -21,6 +22,11 @@ add_library(maps SHARED
 # make the header public
 # install it to include/maps
 pods_install_headers(
+  LidarUtils.hpp
+  PointerUtils.hpp
+  ThreadSafeQueue.hpp
+  RansacGeneric.hpp
+  PointConvert.hpp
   Types.hpp
   ThreadSafeQueue.hpp
   RansacGeneric.hpp
@@ -57,7 +63,6 @@ set(REQUIRED_PACKAGES
   octomap
   glib-2.0
   zlib
-  maps-utils
 )
 pods_use_pkg_config_packages(maps ${REQUIRED_PACKAGES})
 

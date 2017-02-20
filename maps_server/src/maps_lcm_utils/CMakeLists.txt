@@ -20,7 +20,7 @@ pods_install_headers(
 pods_install_libraries(maps-lcm-utils)
 
 # uncomment these lines to link against another library via pkg-config
-set(REQUIRED_PACKAGES bot2-core lcm eigen3 bot2-frames maps-utils)
+set(REQUIRED_PACKAGES bot2-core lcm eigen3 bot2-frames)
 pods_use_pkg_config_packages(maps-lcm-utils ${REQUIRED_PACKAGES})
 
 # create a pkg-config file for the library, to make it easier for other

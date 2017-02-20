@@ -17,8 +17,7 @@
 #include <maps/Utils.hpp>
 #include <maps/DepthImage.hpp>
 #include <maps/ObjectPool.hpp>
-
-#include <maps_utils/LidarUtils.hpp>
+#include <maps/LidarUtils.hpp>
 
 #include <maps_lcm/LcmTranslator.hpp>
 #include <maps_lcm/ViewClient.hpp>

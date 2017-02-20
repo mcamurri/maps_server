@@ -25,8 +25,7 @@
 #include <maps/Utils.hpp>
 #include <maps/Collector.hpp>
 #include <maps/PointDataBuffer.hpp>
-
-#include <maps_utils/PointerUtils.hpp>
+#include <maps/PointerUtils.hpp>
 
 #include <maps_lcm_utils/BotWrapper.hpp>
 #include <maps_lcm_utils/Clock.hpp>

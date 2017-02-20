@@ -8,7 +8,7 @@ include(cmake/lcmtypes.cmake)
 lcmtypes_build()
 
 # non-lcm tools
-add_subdirectory(src/maps_utils)
+#add_subdirectory(src/maps_utils)
 
 # main maps library (no application)
 add_subdirectory(src/libmaps)
