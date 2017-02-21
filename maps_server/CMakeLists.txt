@@ -29,5 +29,7 @@ add_subdirectory(src/apps)
 # misc utils
 add_subdirectory(src/utils)
 
+add_subdirectory(src/plane-seg)
+
 # Maps GTK renderer works as of Feb 2017
 # add_subdirectory(src/renderers)
