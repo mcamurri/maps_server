@@ -12,7 +12,7 @@
 
 #include <gtkmm-renderer/RendererBase.hpp>
 #include <maps_lcm/ViewClient.hpp>
-#include <maps_bot_wrapper/BotWrapper.hpp>
+#include <maps_lcm/BotWrapper.hpp>
 
 #include "InteractiveBox.hpp"
 #include "ViewMetaData.hpp"

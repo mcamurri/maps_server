@@ -7,11 +7,11 @@
 #include <lcmtypes/maps/snapshot_request_t.hpp>
 #include <gtkmm-renderer/RendererBase.hpp>
 
-#include <maps_utils/Clock.hpp>
-
 #include <maps/ViewBase.hpp>
-#include <maps_lcm/ViewClient.hpp>
 #include <maps/Utils.hpp>
+
+#include <maps_lcm/Clock.hpp>
+#include <maps_lcm/ViewClient.hpp>
 
 using namespace maps;
 

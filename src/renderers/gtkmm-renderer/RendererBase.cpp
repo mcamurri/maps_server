@@ -4,7 +4,7 @@
 #include <bot_param/param_util.h>
 #include <bot_frames/bot_frames.h>
 #include <lcm/lcm-cpp.hpp>
-#include <maps_utils/Clock.hpp>
+#include <maps_lcm/Clock.hpp>
 
 #include <gtkmm.h>
 #include <list>
