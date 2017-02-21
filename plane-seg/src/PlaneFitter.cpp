@@ -2,7 +2,7 @@
 
 #include <limits>
 
-#include <maps_utils/RansacGeneric.hpp>
+#include <maps/RansacGeneric.hpp>
 
 using namespace planeseg;
 
