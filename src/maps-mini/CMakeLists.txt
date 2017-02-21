@@ -21,7 +21,7 @@ pods_install_headers(
   ViewClient.hpp
   DepthImage.hpp
   DepthImageView.hpp
-  DESTINATION ${LIB_NAME}
+  DESTINATION maps_mini
 )
 
 # make the library public

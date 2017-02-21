@@ -8,10 +8,10 @@
 
 #include <maps_lcm/BotWrapper.hpp>
 
-#include <maps-mini/ViewClient.hpp>
-#include <maps-mini/DepthImage.hpp>
-#include <maps-mini/DepthImageView.hpp>
-#include <maps-mini/LcmTranslator.hpp>
+#include <maps_mini/ViewClient.hpp>
+#include <maps_mini/DepthImage.hpp>
+#include <maps_mini/DepthImageView.hpp>
+#include <maps_mini/LcmTranslator.hpp>
 
 #include "FillMethods.hpp"
 

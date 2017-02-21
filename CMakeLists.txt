@@ -11,13 +11,13 @@ include(cmake/lcmtypes.cmake)
 lcmtypes_build()
 
 # main maps library (no application)
-add_subdirectory(src/libmaps)
+add_subdirectory(src/maps)
 
 # maps library specific to lcm
-add_subdirectory(src/maps_lcm)
+add_subdirectory(src/maps-lcm)
 
 # library: minimal version of the above
-add_subdirectory(src/libmaps-mini)
+add_subdirectory(src/maps-mini)
 
 # library: used for filling in cell in height maps
 add_subdirectory(src/terrain-map)
