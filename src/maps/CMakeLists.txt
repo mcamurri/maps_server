@@ -53,13 +53,29 @@ pods_install_headers(
 # make the library public
 pods_install_libraries(maps)
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(PCL_IO pcl_io-1.7)
+if(PCL_IO_FOUND)
+  message("---- PCL IO was found\n")
+  set(REQ_PKGS  pcl_common-1.7  pcl_filters-1.7  pcl_features-1.7  pcl_io-1.7  pcl_surface-1.7)
+endif()
+
+pkg_check_modules(PCL_IO_1_8 pcl_io-1.8)
+if(PCL_IO_1_8_FOUND)
+  message("---- PCL IO_1_8 was found\n")
+  set(REQ_PKGS  pcl_common-1.8  pcl_filters-1.8  pcl_features-1.8  pcl_io-1.8  pcl_surface-1.8)
+endif()
+
+if(NOT PCL_IO_FOUND AND NOT PCL_IO_1_8_FOUND)
+  message("---- PCL NOT FOUND. Not building maps_server")
+  return()
+endif()
+
+
+
 set(REQUIRED_PACKAGES
   eigen3
-  pcl_common-1.7
-  pcl_filters-1.7
-  pcl_features-1.7
-  pcl_io-1.7
-  pcl_surface-1.7
+  ${REQ_PKGS}
   octomap
   glib-2.0
   zlib
