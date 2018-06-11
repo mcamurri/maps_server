@@ -8,4 +8,5 @@ add_executable(${LIBRARY_NAME}
   StereoHandler.cpp
   ServerMain.cpp)
 pods_use_pkg_config_packages(${LIBRARY_NAME} opencv maps-lcm)
+target_link_libraries(${LIBRARY_NAME} pthread)
 pods_install_executables(${LIBRARY_NAME})
