@@ -285,7 +285,7 @@ getAsOctree(const float iResolution, const bool iTraceRays,
         octCloud.push_back(pt);
       }
       octomap::point3d octOrigin(-iOrigin[0], -iOrigin[1], -iOrigin[2]);
-      view->getOctree()->insertScan(octCloud, octOrigin);
+      view->getOctree()->insertPointCloud(octCloud, octOrigin);
     }
     view->getOctree()->prune();
   }
