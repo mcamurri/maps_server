@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>maps_server_core</name>
+  <version>0.0.1</version>
+  <description>The maps_server_core contains the main libraries for the maps_server package</description>
+
+  <maintainer email="mcamurri@robots.ox.ac.uk">Marco Camurri</maintainer>
+
+  <author email="mfallon@robots.ox.ac.uk">Maurice Fallon</author>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>

@@ -56,11 +56,4 @@ Example data rate for short range height map: 5KB at 1Hz
 * Required: PCL, Octomap
 * Optional: LCM, libbot
 
-**Pods**
-
-This software is constructed according to the Pods software policies and
-templates.  The policies and templates can be found at:
-
-* http://sourceforge.net/projects/pods
-
 
