@@ -40,7 +40,10 @@ find_package(catkin REQUIRED roscpp rospy message_generation std_msgs)
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-add_message_files(FILES MapsBlob.msg)
+add_message_files(FILES MapsBlob.msg
+	                MapParams.msg
+			MapRequest.msg
+			MapsCatalog.msg)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
