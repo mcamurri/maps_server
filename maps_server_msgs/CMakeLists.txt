@@ -41,9 +41,25 @@ find_package(catkin REQUIRED roscpp rospy message_generation std_msgs)
 
 ## Generate messages in the 'msg' folder
 add_message_files(FILES MapsBlob.msg
-	                MapParams.msg
-			MapRequest.msg
-			MapsCatalog.msg)
+MapsCatalog.msg
+MapsCloud.msg
+MapsCommand.msg
+MapsDataRequestList.msg
+MapsDataRequest.msg
+MapsDepthSettings.msg
+MapsImage.msg
+MapsOctree.msg
+MapsParams.msg
+MapsPointcloudRequest.msg
+MapsRegistrationCommand.msg
+MapsRequest.msg
+MapsScanArray.msg
+MapsScan.msg
+MapsShaperDataRequest.msg
+MapsSnapshotRequest.msg
+MapsSubimageRequest.msg
+MapsSubimageResponse.msg
+			)
 
 ## Generate services in the 'srv' folder
 # add_service_files(

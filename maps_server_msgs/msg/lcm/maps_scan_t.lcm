@@ -1,0 +1,26 @@
+
+
+struct scan_t
+
+# timestamp of this scan
+int64 utime
+
+# scan information
+int16 num_ranges
+float32 theta_min
+float32 theta_step
+
+# scan-to-reference transforms
+float32 translation_start[3]
+float32 quaternion_start[4]
+float32 translation_end[3]
+float32 quaternion_end[4]
+
+# scan data blob
+float32 range_scale
+  blob_t range_blob
+
+# intensity blob
+float32 intensity_scale
+  blob_t intensity_blob
+

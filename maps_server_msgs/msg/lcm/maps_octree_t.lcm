@@ -1,0 +1,22 @@
+
+
+struct octree_t
+
+# timestamp of this message
+int64 utime
+
+# id of map
+int64 map_id
+
+# id of view
+int64 view_id
+
+# size of data
+int32 num_bytes
+
+# raw data
+  byte data[num_bytes]
+
+# transform from reference to octree coords
+float32 transform[4][4]
+

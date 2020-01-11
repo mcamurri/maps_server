@@ -1,15 +1,15 @@
-package maps;
+
 
 struct catalog_t
-{
-  // timestamp of this message
-  int64_t utime;
 
-  // current active maps
-  int32_t num_maps;
-  params_t map_params[num_maps]; // variable was maps
+# timestamp of this message
+int64 utime
 
-  // current active views
-  int32_t num_views;
-  request_t views[num_views];
-}
+# current active maps
+int32 num_maps
+  params_t map_params[num_maps] # variable was maps
+
+# current active views
+int32 num_views
+  request_t views[num_views]
+

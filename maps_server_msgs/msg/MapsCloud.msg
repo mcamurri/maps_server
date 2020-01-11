@@ -7,7 +7,7 @@ int64 map_id
 int64 view_id
 
 # transform from reference to cloud coords
-float32 transform[16]
+float32[16] transform
 
 # the actual data
 MapsBlob blob

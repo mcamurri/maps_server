@@ -1,6 +1,0 @@
-package maps;
-
-struct subimage_response_t {
-  subimage_request_t subimage_request;
-  bot_core.image_t image;
-}

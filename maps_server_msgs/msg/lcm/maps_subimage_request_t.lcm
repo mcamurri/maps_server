@@ -1,0 +1,12 @@
+
+
+struct subimage_request_t 
+# channel information etc
+  data_request_t data_request
+
+# roi
+int16 x
+int16 y
+int16 w
+int16 h
+

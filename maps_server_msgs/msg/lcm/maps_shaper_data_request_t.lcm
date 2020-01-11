@@ -1,0 +1,7 @@
+
+
+struct shaper_data_request_t
+
+    string channel
+  int8 priority
+

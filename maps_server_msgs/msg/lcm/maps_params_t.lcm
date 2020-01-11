@@ -1,0 +1,20 @@
+
+
+struct params_t
+
+# timestamp of this message
+int64 utime
+
+# id of map to create
+int64 map_id
+
+# resolution in m
+float32 resolution
+
+# xyz bounds in m
+float32 bound_min[3]
+float32 bound_max[3]
+
+# number of scans to store in circular buffer
+int32 buffer_size
+
