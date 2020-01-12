@@ -38,7 +38,11 @@ add_library(maps SHARED src/LidarUtils.cpp
                         src/ScanBundleView.cpp
                         src/LocalMap.cpp
                         src/MapManager.cpp
-                        src/Collector.cpp)
+                        src/Collector.cpp
+			src/DepthImage.cpp
+			src/DepthImageView.cpp
+			src/Utils.cpp
+			src/ViewBase.cpp)
 
 target_link_libraries(maps ${PCL_LIBRARIES})
 add_dependencies(maps ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})

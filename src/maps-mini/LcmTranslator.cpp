@@ -1,6 +1,6 @@
 #include "LcmTranslator.hpp"
 
-#include "DataBlob.hpp"
+#include <maps_server_core/DataBlob.hpp>
 #include "DepthImageView.hpp"
 #include "DepthImage.hpp"
 

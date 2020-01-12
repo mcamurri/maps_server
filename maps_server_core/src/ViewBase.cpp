@@ -1,4 +1,4 @@
-#include "maps_server_core/ViewBase.hpp"
+#include "ViewBase.hpp"
 
 using namespace maps;
 
@@ -41,7 +41,7 @@ operator==(const Spec& iSpec) const {
   if (!eq) {
     return false;
   }
-  for (int i = 0; i < mClipPlanes.size(); ++i) {
+  for (int i = 0; i < (int)mClipPlanes.size(); ++i) {
     if (mClipPlanes[i] != iSpec.mClipPlanes[i]) {
       return false;
     }
@@ -97,26 +97,9 @@ getUpdateTime() const {
   return mUpdateTime;
 }
 
-maps::TriangleMesh::Ptr ViewBase::
-getAsMesh(const bool iTransform) const {
-  // must override this in derived classes
-  maps::TriangleMesh::Ptr mesh;
-  return mesh;
-}
-
-
 bool ViewBase::getClosest(const Eigen::Vector3f& iPoint,
                           Eigen::Vector3f& oPoint,
                           Eigen::Vector3f& oNormal) const {
-  // must override this in derived classes
-  return false;
-}
-
-
-
-bool ViewBase::
-intersectRay(const Eigen::Vector3f& iOrigin, const Eigen::Vector3f& iDirection,
-             Eigen::Vector3f& oPoint, Eigen::Vector3f& oNormal) const {
   // must override this in derived classes
   return false;
 }

@@ -4,11 +4,6 @@
 #include <vector>
 #include <memory>
 #include <Eigen/Geometry>
-#include "Types.hpp"
-
-namespace pcl {
-  class RangeImage;
-}
 
 namespace maps {
 
@@ -60,11 +55,6 @@ public:
 
   void setAccumulationMethod(const AccumulationMethod iMethod);
 
-  void create(const maps::PointCloud::Ptr& iCloud);
-
-  maps::PointCloud::Ptr getAsPointCloud() const;
-  maps::PointCloud::Ptr getAsPointCloudOrganized() const;
-  boost::shared_ptr<pcl::RangeImage> getAsRangeImage() const;
   Eigen::Vector3f project(const Eigen::Vector3f& iPoint,
                           const Type iType) const;
   Eigen::Vector3f unproject(const Eigen::Vector3f& iPoint,

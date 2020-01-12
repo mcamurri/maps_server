@@ -1,0 +1,42 @@
+apps:
+  Executables: 
+    data-request-server
+    maps-test
+    maps-test-collector
+    maps-shapshot-server
+    maps-registrar
+    maps-affordance-updater
+
+maps-lcm:
+  Libraries:
+    maps-lcm
+
+
+renderers:
+  gtkmm-renderer:
+    Libraries:
+      gtklmm--renderer
+  maps-renderer:
+    Libraries:
+      maps-renderer
+  
+  maps-viewer:
+    Executables:
+      maps-viewer
+
+server:
+  Executables:
+    maps-server
+
+terrain-map:
+  Libraries:
+    terrain-map
+  Executables:
+    terrain-map-test
+
+utils:
+  Executables:
+    drc-gradmap-send
+    drc-write-maps-octree
+
+

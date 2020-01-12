@@ -1,7 +1,9 @@
 #ifndef _maps_ViewBase_hpp_
 #define _maps_ViewBase_hpp_
 
-#include "Types.hpp"
+#include <memory>
+#include <vector>
+#include <Eigen/Dense>
 
 namespace maps {
 
@@ -76,22 +78,9 @@ public:
 
   virtual Ptr clone() const = 0;
 
-  virtual void set(const maps::PointCloud::Ptr& iCloud) = 0;
-
-  virtual maps::PointCloud::Ptr
-  getAsPointCloud(const bool iTransform=true) const = 0;
-
-  virtual maps::TriangleMesh::Ptr
-  getAsMesh(const bool iTransform=true) const;
-
   virtual bool getClosest(const Eigen::Vector3f& iPoint,
                           Eigen::Vector3f& oPoint,
                           Eigen::Vector3f& oNormal) const;
-
-  virtual bool intersectRay(const Eigen::Vector3f& iOrigin,
-                            const Eigen::Vector3f& iDirection,
-                            Eigen::Vector3f& oPoint,
-                            Eigen::Vector3f& oNormal) const;
 
 protected:
   int64_t mId;

@@ -32,15 +32,8 @@ public:
 
   const Type getType() const;
   ViewBase::Ptr clone() const;
-  void set(const maps::PointCloud::Ptr& iCloud);
-  maps::PointCloud::Ptr getAsPointCloud(const bool iTransform=true) const;
-  maps::PointCloud::Ptr getAsPointCloudOrganized(const bool iTransform=true) const;
-  maps::TriangleMesh::Ptr getAsMesh(const bool iTransform=true) const;
   bool getClosest(const Eigen::Vector3f& iPoint,
                   Eigen::Vector3f& oPoint, Eigen::Vector3f& oNormal) const;
-  bool intersectRay(const Eigen::Vector3f& iOrigin,
-                    const Eigen::Vector3f& iDirection,
-                    Eigen::Vector3f& oPoint, Eigen::Vector3f& oNormal) const;
 
 protected:
   const std::vector<float>& getInnerData(const int iType) const;
